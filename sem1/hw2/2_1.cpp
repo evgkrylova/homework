@@ -21,7 +21,7 @@ int recursiveFibonacci(int x)
 	}
 	else
 	{
-		return (recursiveFibonacci(x - 1) + recursiveFibonacci(x - 2));
+		return recursiveFibonacci(x - 1) + recursiveFibonacci(x - 2);
 	}
 }
 
