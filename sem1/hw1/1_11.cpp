@@ -11,7 +11,9 @@ void quickSort(int *numbers, int left, int right)
 	while (left < right)
 	{
 		while ((numbers[right] >= comparing) && (left < right))
+		{
 			right--;
+		}
 		if (left != right)
 		{
 			numbers[left] = numbers[right];
@@ -39,19 +41,23 @@ void quickSort(int *numbers, int left, int right)
 
 int main()
 {
-	int* a = new int[4];
-	for (int i = 0; i < 4; i++)
+	int size = 0;
+	cout << "Enter the size of the list: ";
+	cin >> size;
+
+	int list[100000];
+	cout << "Enter elements of the list: ";
+	for (int i = 0; i < size; i++)
 	{
-		a[i] = i;
+		cin >> list[i];
 	}
-	a[0] = 4;
-	a[1] = 1;
-	a[2] = 6;
-	a[3] = 5;
-	quickSort(a, 0, 3);
-	for (int i = 0; i < 4; i++)
+
+	quickSort(list, 0, size - 1);
+
+	cout << "Sorted version of this list: ";
+	for (int i = 0; i < size; i++)
 	{
-		cout << a[i] << " ";
+		cout << list[i] << " ";
 	}
 	return 0;
 }
