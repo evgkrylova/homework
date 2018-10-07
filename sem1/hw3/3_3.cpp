@@ -15,18 +15,6 @@ int exponentiating(int x, int n)
 	return exponentiating(x, n / 2) * exponentiating(x, n / 2);
 }
 
-int mass(int n)
-{
-	int* a = new int[5];
-
-	for (int i = 0; i < n; i++)
-	{
-		a[i] = i;
-	}
-
-	return *a;
-}
-
 int main()
 {
 	int number = 1;
