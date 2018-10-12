@@ -16,7 +16,6 @@ void sumView(int sum, int summands[], int index, int originalNumber)
 		}
 		cout << summands[index - 1] << "\n";
 	}
-
 	else
 	{
 		if ((index > 0) && (lastSummand > summands[index - 1]))
