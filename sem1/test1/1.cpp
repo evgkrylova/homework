@@ -51,11 +51,11 @@ int main()
 	}
 	else
 	{
-		cout << "Generated list of random numbers in line segment [11, 43]: \n";
+		cout << "Generated list of random numbers in line segment [11, 42]: \n";
 		srand(time(0));
 		for (int i = 0; i < size; i++)
 		{
-			list[i] = rand() % 33 + 11;
+			list[i] = rand() % 32 + 11;
 			cout << list[i] << " ";
 			if (i % 2 == 0)
 			{
@@ -86,3 +86,5 @@ int main()
 
 	return 0;
 }
+
+
