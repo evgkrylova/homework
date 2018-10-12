@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 void buildingHeap(int *numbers, int root, int bottom)
 {
 	int maxChild;
