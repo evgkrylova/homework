@@ -4,10 +4,9 @@ using namespace std;
 
 void quickSort(int *numbers, int left, int right)
 {
-	int comparing;
 	int leftHold = left;
 	int rightHold = right;
-	comparing = numbers[left];
+	int comparing = numbers[left];
 	while (left < right)
 	{
 		while ((numbers[right] >= comparing) && (left < right))
