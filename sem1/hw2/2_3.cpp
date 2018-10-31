@@ -1,28 +1,32 @@
-#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
 
-void compilingFareySequence(int n)
+struct fraction_t
 {
-	int firstNumerator = 0;
-	int firstDenominator = 1;
-	int secondNumerator = 1;
-	int secondDenominator = n;
+	int numerator;
+	int denominator;
+};
 
-	cout << firstNumerator << "/" << firstDenominator << "\n";
+void compileFareySequence(int n)
+{
+	cout << "There are all simple irreducible conforming fractions: " << "\n";
 
-	while (secondNumerator <= n)
+	fraction_t first_fraction{ 0, 1 };
+	fraction_t second_fraction{ 1, n };
+
+	cout << first_fraction.numerator << "/" << first_fraction.denominator << "\n";
+
+	while (second_fraction.numerator <= n)
 	{
-		int factor = (n + firstDenominator) / secondDenominator;
-		int tempNumerator = firstNumerator;
-		int tempDenominator = firstDenominator;
-		firstNumerator = secondNumerator;
-		firstDenominator = secondDenominator;
-		secondNumerator = secondNumerator * factor - tempNumerator;
-		secondDenominator = secondDenominator * factor - tempDenominator;
+		int factor = (n + first_fraction.denominator) / second_fraction.denominator;
+		fraction_t temp_fraction{ first_fraction.numerator, first_fraction.denominator };
+		first_fraction.numerator = second_fraction.numerator;
+		first_fraction.denominator = second_fraction.denominator;
+		second_fraction.numerator = second_fraction.numerator * factor - temp_fraction.numerator;
+		second_fraction.denominator = second_fraction.denominator * factor - temp_fraction.denominator;
 
-		cout << firstNumerator << "/" << firstDenominator << "\n";
+		cout << first_fraction.numerator << "/" << first_fraction.denominator << "\n";
 	}
 }
 
@@ -32,9 +36,7 @@ int main()
 	cout << "Enter the largest possible denominator: ";
 	cin >> maxDenominator;
 
-	cout << "There are all simple irreducible conforming fractions: " << "\n";
-
-	compilingFareySequence(maxDenominator);
+	compileFareySequence(maxDenominator);
 
 	return 0;
 }
