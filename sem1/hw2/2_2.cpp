@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
@@ -16,6 +15,7 @@ void sumView(int sum, int summands[], int index, int originalNumber)
 		}
 		cout << summands[index - 1] << "\n";
 	}
+
 	else
 	{
 		if ((index > 0) && (lastSummand > summands[index - 1]))
@@ -32,17 +32,25 @@ void sumView(int sum, int summands[], int index, int originalNumber)
 
 int main()
 {
-	int number = 0;
-	cout << "Enter the number: ";
+	int number = 1;
+	cout << "Enter a natural number: ";
 	cin >> number;
 
-	cout << "There is this number expressed as the all possible sums: " << "\n";
+	if (number == 0)
+	{
+		cout << "Sorry. 0 is not a natural number." << "\n";
+	}
 
-	int* addends = new int[number];
-	int const startIndex = 0;
-	sumView(number, addends, startIndex, number);
+	else
+	{
+		cout << "There is this number expressed as the all possible sums: " << "\n";
 
-	delete addends;
+		int *addends = new int[number];
+		const int startIndex = 0;
+		sumView(number, addends, startIndex, number);
+
+		delete[] addends;
+	}
 
 	return 0;
 }
