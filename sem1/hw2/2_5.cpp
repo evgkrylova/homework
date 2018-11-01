@@ -1,43 +1,56 @@
-#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
 
-void buildingHeap(int *numbers, int root, int bottom)
+void buildHeap(int *numbers, int root, int lowestRow)
 {
-	int maxChild;
 	bool isReady = false;
-	while ((root * 2 <= bottom) && (not isReady))
+	int maxChild = 0;
+	int leftChild = root * 2;
+	int rightChild = root * 2 + 1;
+	while ((leftChild <= lowestRow - 1) && (!isReady))
 	{
-		if (root * 2 == bottom)
-			maxChild = root * 2;
-		else if (numbers[root * 2] > numbers[root * 2 + 1])
-			maxChild = root * 2;
-		else
-			maxChild = root * 2 + 1;
-		if (numbers[root] < numbers[maxChild])
+		if ((leftChild == lowestRow - 1) || (numbers[leftChild] > numbers[rightChild]))
 		{
-			int temp = numbers[maxChild];
-			numbers[maxChild] = numbers[root];
-			numbers[root] = temp;
-			root = maxChild;
+			maxChild = leftChild;
 		}
 		else
+		{
+			maxChild = rightChild;
+		}
+
+		if (numbers[root] < numbers[maxChild])
+		{
+			swap(numbers[maxChild], numbers[root]);
+			root = maxChild;
+			leftChild = root * 2;
+			rightChild = root * 2 + 1;
+		}
+		else
+		{
 			isReady = true;
+		}
 	}
 }
 
 void heapSort(int *numbers, int size)
 {
 	for (int i = size / 2 - 1; i >= 0; i--)
-		buildingHeap(numbers, i, size - 1);
+	{
+		buildHeap(numbers, i, size);
+	}
 	for (int i = size - 1; i >= 1; i--)
 	{
-		int temp = numbers[0];
-		numbers[0] = numbers[i];
-		numbers[i] = temp;
-		buildingHeap(numbers, 0, i - 1);
+		swap(numbers[0], numbers[i]);
+		buildHeap(numbers, 0, i);
 	}
+}
+
+void swap(int &x, int &y)
+{
+	int temp = y;
+	y = x;
+	x = temp;
 }
 
 int main()
@@ -46,7 +59,7 @@ int main()
 	cout << "Enter the size of the list: ";
 	cin >> size;
 
-	int list[100000];
+	int* list = new int[size];
 	cout << "Enter elements of the list: ";
 	for (int i = 0; i < size; i++)
 	{
@@ -60,5 +73,8 @@ int main()
 	{
 		cout << list[i] << " ";
 	}
+
+	delete[] list;
+
 	return 0;
 }
