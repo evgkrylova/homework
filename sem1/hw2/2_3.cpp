@@ -2,7 +2,7 @@
 
 using namespace std;
 
-struct fraction_t
+struct Fraction
 {
 	int numerator;
 	int denominator;
@@ -12,21 +12,21 @@ void compileFareySequence(int n)
 {
 	cout << "There are all simple irreducible conforming fractions: " << "\n";
 
-	fraction_t first_fraction{ 0, 1 };
-	fraction_t second_fraction{ 1, n };
+	Fraction firstFraction{ 0, 1 };
+	Fraction secondFraction{ 1, n };
 
-	cout << first_fraction.numerator << "/" << first_fraction.denominator << "\n";
+	cout << firstFraction.numerator << "/" << firstFraction.denominator << "\n";
 
-	while (second_fraction.numerator <= n)
+	while (secondFraction.numerator <= n)
 	{
-		int factor = (n + first_fraction.denominator) / second_fraction.denominator;
-		fraction_t temp_fraction{ first_fraction.numerator, first_fraction.denominator };
-		first_fraction.numerator = second_fraction.numerator;
-		first_fraction.denominator = second_fraction.denominator;
-		second_fraction.numerator = second_fraction.numerator * factor - temp_fraction.numerator;
-		second_fraction.denominator = second_fraction.denominator * factor - temp_fraction.denominator;
+		int factor = (n + firstFraction.denominator) / secondFraction.denominator;
+		Fraction tempFraction{ firstFraction.numerator, firstFraction.denominator };
+		firstFraction.numerator = secondFraction.numerator;
+		firstFraction.denominator = secondFraction.denominator;
+		secondFraction.numerator = secondFraction.numerator * factor - tempFraction.numerator;
+		secondFraction.denominator = secondFraction.denominator * factor - tempFraction.denominator;
 
-		cout << first_fraction.numerator << "/" << first_fraction.denominator << "\n";
+		cout << firstFraction.numerator << "/" << firstFraction.denominator << "\n";
 	}
 }
 
