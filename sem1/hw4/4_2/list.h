@@ -1,12 +1,14 @@
 #pragma once
 
-struct ListElement {
+struct ListElement 
+{
 	char *name;
 	char *number;
 	ListElement *next;
 };
 
-struct List {
+struct List 
+{
 	ListElement *first;
 };
 
@@ -21,4 +23,5 @@ char *getNumberByIndex(List *list, int index);
 char *getNumberByName(List *list, char *name);
 char *getNameByNumber(List *list, char *number);
 
-bool isStringsEquivalent(char *first, char *second);
+bool isStringsEquivalent(char *first, char *second); 
+

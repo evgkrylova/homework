@@ -38,15 +38,14 @@ char *getNameByIndex(List *list, int index)
 	int counter = 0;
 	while (current)
 	{
-		if (counter == index) 
+		if (counter == index)
 		{
 			return current->name;
 		}
 		counter += 1;
 		current = current->next;
 	}
-	char answer[100] = "There is no element with this index in the list.\n";
-	return answer;
+	return '\0';
 }
 
 char *getNumberByIndex(List *list, int index)
@@ -62,8 +61,7 @@ char *getNumberByIndex(List *list, int index)
 		counter += 1;
 		current = current->next;
 	}
-	char answer[100] = "There is no element with this index in the list.\n";
-	return answer;
+	return '\0';
 }
 
 char *getNumberByName(List *list, char *name)
@@ -77,8 +75,7 @@ char *getNumberByName(List *list, char *name)
 		}
 		current = current->next;
 	}
-	char answer[100] = "There is no this name in the list.\n";
-	return answer;
+	return '\0';
 }
 
 char *getNameByNumber(List *list, char *number)
@@ -92,8 +89,7 @@ char *getNameByNumber(List *list, char *number)
 		}
 		current = current->next;
 	}
-	char answer[100] = "There is no this number in the list.\n";
-	return answer;
+	return '\0';
 }
 
 void addToList(List *list, char *name, char *number)

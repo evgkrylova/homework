@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	List *book = createList();
+	PhoneBook *book = createPhoneBook();
 	getBookFromFile(book);
 
 	cout << "Hello. It is programme called 'Phone Book'.\n";
@@ -34,7 +34,7 @@ int main()
 		{
 			getName(book);
 		}
-		else 
+		else
 		{
 			saveBookToFile(book);
 		}
