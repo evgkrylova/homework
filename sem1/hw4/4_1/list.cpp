@@ -1,13 +1,13 @@
 #include "list.h"
 
-CyclicList *createCyclicList()
+CircularList *createCircularList()
 {
-	return new CyclicList{ 0, nullptr, nullptr };
+	return new CircularList{ 0, nullptr, nullptr };
 }
 
-void addToCyclicList(CyclicList *list, int x)
+void addToCircularList(CircularList *list, int x)
 {
-	CyclicListElement *newElement = new CyclicListElement{ x, list->first };
+	CircularListElement *newElement = new CircularListElement{ x, list->first };
 	if (list->first == nullptr)
 	{
 		list->first = newElement;
@@ -20,17 +20,17 @@ void addToCyclicList(CyclicList *list, int x)
 	list->size++;
 }
 
-void fillWithConsecutiveNumbers(CyclicList *list, int n)
+void fillWithConsecutiveNumbers(CircularList *list, int n)
 {
 	for (int i = 1; i <= n; i++)
 	{
-		addToCyclicList(list, i);
+		addToCircularList(list, i);
 	}
 }
 
-int getElement(CyclicList *list, int index)
+int getElementValue(CircularList *list, int index)
 {
-	CyclicListElement *current = list->first;
+	CircularListElement *current = list->first;
 	int count = 0;
 	if (index >= list->size)
 	{
@@ -43,36 +43,39 @@ int getElement(CyclicList *list, int index)
 	return current->value;
 }
 
-int sizeOfCyclicList(CyclicList *list)
+int sizeOfCircularList(CircularList *list)
 {
 	return list->size;
 }
 
-void deleteFromCyclicList(CyclicList *list, int index)
+void deleteFromCircularList(CircularList *list, int index)
 {
 	if (index == 0)
 	{
-		list->last->next = list->first->next;
-		list->first = list->first->next;
+		CircularListElement *current = list->first;
+		list->last->next = current->next;
+		list->first = current->next;
+		delete current;
 		list->size--;
 		return;
 	}
-	CyclicListElement *current = list->first;
+	CircularListElement *current = list->first;
 	for (int i = 1; i < index; i++)
 	{
 		current = current->next;
 	}
-	CyclicListElement *deletingElement = current->next;
+	CircularListElement *deletingElement = current->next;
 	current->next = deletingElement->next;
+	delete deletingElement;
 	list->size--;
 }
 
-void deleteCyclicList(CyclicList *list)
+void deleteCircularList(CircularList *list)
 {
-	CyclicListElement *current = list->first;
+	CircularListElement *current = list->first;
 	for (int i = 0; i < list->size - 1; i++)
 	{
-		CyclicListElement *nextElement = current->next;
+		CircularListElement *nextElement = current->next;
 		delete current;
 		current = nextElement;
 	}

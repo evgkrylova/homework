@@ -1,22 +1,22 @@
 #pragma once
 
-struct CyclicListElement {
+struct CircularListElement {
 	int value;
-	CyclicListElement *next;
+	CircularListElement *next;
 };
 
-struct CyclicList {
+struct CircularList {
 	int size;
-	CyclicListElement *first;
-	CyclicListElement *last;
+	CircularListElement *first;
+	CircularListElement *last;
 
 };
 
-CyclicList *createCyclicList();
-void deleteCyclicList(CyclicList *list);
+CircularList *createCircularList();
+void deleteCircularList(CircularList *list);
 
-void addToCyclicList(CyclicList *list, int x);
-void deleteFromCyclicList(CyclicList *list, int index);
-void fillWithConsecutiveNumbers(CyclicList *list, int n);
-int getElement(CyclicList *list, int index);
-int sizeOfCyclicList(CyclicList *list);
+void addToCircularList(CircularList *list, int x);
+void deleteFromCircularList(CircularList *list, int index);
+void fillWithConsecutiveNumbers(CircularList *list, int n);
+int getElementValue(CircularList *list, int index);
+int sizeOfCircularList(CircularList *list);

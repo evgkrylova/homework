@@ -3,15 +3,16 @@
 
 using namespace std;
 
-int lastOfSicarii(CyclicList *list, int member)
+int lastOfSicarii(CircularList *list, int member)
 {
-	int indexForKilling = (member - 1) % sizeOfCyclicList(list);
-	while (sizeOfCyclicList(list) > 1)
+	int indexForKilling = 0;
+	do
 	{
-		deleteFromCyclicList(list, indexForKilling);
-		indexForKilling = (indexForKilling + member - 1) % sizeOfCyclicList(list);
-	}
-	return list->first->value;
+		indexForKilling = (indexForKilling + member - 1) % sizeOfCircularList(list);
+		deleteFromCircularList(list, indexForKilling);
+	} 
+	while (sizeOfCircularList(list) > 1);
+	return getElementValue(list, 0);
 }
 
 
@@ -21,7 +22,7 @@ int main()
 	cout << "Enter how many warriors are in a circle: ";
 	cin >> number;
 
-	CyclicList *list = createCyclicList();
+	CircularList *list = createCircularList();
 	fillWithConsecutiveNumbers(list, number);
 
 	int member = 0;
@@ -30,7 +31,7 @@ int main()
 
 	cout << "Number of the last alive warrior: " << lastOfSicarii(list, member);
 
-	deleteCyclicList(list);
+	deleteCircularList(list);
 
 	return 0;
 }
