@@ -1,0 +1,5 @@
+Because the mathematical concept of a matrix can be represented as 
+
+a two-dimensional grid, 
+two-dimensional arrays are also sometimes called 
+matrices.
