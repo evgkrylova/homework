@@ -27,7 +27,7 @@ int fibonacci(int n)
 
 int main()
 {
-	int number;
+	int number = 0;
 	cout << "Enter the number of the Fibonacci sequence element: ";
 	cin >> number;
 	cout << "Result: " << fibonacci(number) << endl;
