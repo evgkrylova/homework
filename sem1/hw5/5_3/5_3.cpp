@@ -5,11 +5,7 @@ using namespace std;
 
 bool isBinaryOperator(char c)
 {
-	if ((c == '+') || (c == '-') || (c == '*') || (c == '/'))
-	{
-		return true;
-	}
-	return false;
+	return (c == '+') || (c == '-') || (c == '*') || (c == '/');
 }
 
 int binaryOperatorPrecedence(char c)
@@ -27,9 +23,8 @@ void shuntingYard(char *expression, Stack *operatorStack)
 	for (int i = 0; i < strlen(expression); i++)
 	{
 		char currentElement = expression[i];
-		int code = (int)(currentElement);
 
-		if ((code >= (int)('0')) & (code <= (int)('9')))
+		if (isdigit(currentElement))
 		{
 			cout << currentElement;
 		}
@@ -77,3 +72,4 @@ int main()
 	deleteStack(operatorStack);
 	return 0;
 }
+
