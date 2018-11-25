@@ -38,12 +38,10 @@ bool isStackEmpty(Stack *stack)
 
 void deleteStack(Stack *stack)
 {
-	StackElement *current = stack->first;
-	while (current)
+	double deletingElement = stack->first->element;
+	while (stackFirstElement(stack))
 	{
-		StackElement *nextElement = current->next;
-		delete current;
-		current = nextElement;
+		deletingElement = pop(stack);
 	}
 	delete stack;
 }
@@ -59,9 +57,12 @@ double stackFirstElement(Stack *stack)
 
 void printStack(Stack *stack)
 {
-	while (stackFirstElement(stack))
+	StackElement *current = stack->first;
+	while (current)
 	{
-		std::cout << pop(stack);
+		StackElement *nextElement = current->next;
+		std::cout << current->element;
+		current = nextElement;
 	}
 }
 

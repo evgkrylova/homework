@@ -5,25 +5,21 @@ using namespace std;
 
 bool isBinaryOperator(char c)
 {
-	if ((c == '+') || (c == '-') || (c == '*') || (c == '/'))
-	{
-		return true;
-	}
-	return false;
+	return (c == '+') || (c == '-') || (c == '*') || (c == '/');
 }
 
 double calculateBasicOperations(double a, double b, char binaryOperator)
 {
 	switch (binaryOperator)
 	{
-		case '+':
-			return a + b;
-		case '-':
-			return a - b;
-		case '*':
-			return a * b;
-		case '/':
-			return a / b;
+	case '+':
+		return a + b;
+	case '-':
+		return a - b;
+	case '*':
+		return a * b;
+	case '/':
+		return a / b;
 	}
 }
 
@@ -36,9 +32,9 @@ double calculate(char *expression)
 		char currentElement = expression[i];
 		int code = (int)(currentElement);
 
-		if ((code >= (int)('0')) & (code <= (int)('9')))
+		if (isdigit(currentElement))
 		{
-			double addingElement = (int)(currentElement) - (int)('0');
+			double addingElement = code - (int)('0');
 			push(stack, addingElement);
 		}
 
@@ -49,8 +45,9 @@ double calculate(char *expression)
 			push(stack, calculateBasicOperations(firstOperand, secondOperand, currentElement));
 		}
 	}
-
-	return stackFirstElement(stack);
+	double result = stackFirstElement(stack);
+	deleteStack(stack);
+	return result;
 }
 
 int main()
