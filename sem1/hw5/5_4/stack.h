@@ -19,4 +19,4 @@ bool isStackEmpty(Stack *stack);
 double stackFirstElement(Stack *stack);
 double pop(Stack *stack);
 
-void printStack(Stack *stack); 
+void printStack(Stack *stack);
