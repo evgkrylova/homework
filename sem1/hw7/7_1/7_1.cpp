@@ -87,7 +87,7 @@ int main()
 		{
 			if (isTreeEmpty(tree))
 			{
-				cout << "The tree is empty.]\n;
+				cout << "The tree is empty.\n";
 			}
 			else
 			{
