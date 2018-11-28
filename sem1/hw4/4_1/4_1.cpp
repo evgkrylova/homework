@@ -10,11 +10,9 @@ int lastOfSicarii(CircularList *list, int member)
 	{
 		indexForKilling = (indexForKilling + member - 1) % sizeOfCircularList(list);
 		deleteFromCircularList(list, indexForKilling);
-	} 
-	while (sizeOfCircularList(list) > 1);
-	return getElementValue(list, 0);
+	} while (sizeOfCircularList(list) > 1);
+	return getValue(list, 0);
 }
-
 
 int main()
 {

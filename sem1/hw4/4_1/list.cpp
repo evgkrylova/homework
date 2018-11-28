@@ -28,19 +28,24 @@ void fillWithConsecutiveNumbers(CircularList *list, int n)
 	}
 }
 
-int getElementValue(CircularList *list, int index)
+CircularListElement *getElement(CircularList *list, int index)
 {
 	CircularListElement *current = list->first;
 	int count = 0;
 	if (index >= list->size)
 	{
-		return -1;
+		return nullptr;
 	}
 	for (int i = 1; i <= index; i++)
 	{
 		current = current->next;
 	}
-	return current->value;
+	return current;
+}
+
+int getValue(CircularList *list, int index)
+{
+	return getElement(list, index)->value;
 }
 
 int sizeOfCircularList(CircularList *list)
@@ -59,27 +64,19 @@ void deleteFromCircularList(CircularList *list, int index)
 		list->size--;
 		return;
 	}
-	CircularListElement *current = list->first;
-	for (int i = 1; i < index; i++)
-	{
-		current = current->next;
-	}
-	CircularListElement *deletingElement = current->next;
-	current->next = deletingElement->next;
+	CircularListElement *previousElement = getElement(list, index - 1);
+	CircularListElement *deletingElement = previousElement->next;
+	previousElement->next = deletingElement->next;
 	delete deletingElement;
 	list->size--;
 }
 
 void deleteCircularList(CircularList *list)
 {
-	CircularListElement *current = list->first;
 	for (int i = 0; i < list->size - 1; i++)
 	{
-		CircularListElement *nextElement = current->next;
-		delete current;
-		current = nextElement;
+		deleteFromCircularList(list, i);
 	}
-	delete current;
 	delete list;
 }
 
