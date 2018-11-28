@@ -8,6 +8,7 @@ struct PhoneBook
 };
 
 PhoneBook *createPhoneBook();
+void deletePhoneBook(PhoneBook *phoneBook);
 
 void getNumber(PhoneBook *phoneBook);
 void getName(PhoneBook *phoneBook);

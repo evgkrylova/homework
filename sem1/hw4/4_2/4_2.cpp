@@ -42,6 +42,7 @@ int main()
 		cin >> choice;
 	}
 
+	deletePhoneBook(book);
 	return 0;
 }
 

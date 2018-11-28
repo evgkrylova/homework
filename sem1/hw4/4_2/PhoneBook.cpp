@@ -13,6 +13,12 @@ PhoneBook *createPhoneBook()
 	return phoneBook;
 }
 
+void deletePhoneBook(PhoneBook() *phoneBook)
+{
+	deleteList(phoneBook->body)
+	delete phoneBook;
+}
+
 void getNumber(PhoneBook *phoneBook)
 {
 	List *book = phoneBook->body;
