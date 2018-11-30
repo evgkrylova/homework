@@ -6,13 +6,13 @@ using namespace std;
 bool isLowercaseLetter(char symbol)
 {
 	int code = (int)(symbol);
-	return (code >= (int)('a')) & (code <= (int)('z'));
+	return (code >= (int)('a')) && (code <= (int)('z'));
 }
 
 bool isCapitalLetter(char symbol)
 {
 	int code = (int)(symbol);
-	return (code >= (int)('A')) & (code <= (int)('Z'));
+	return (code >= (int)('A')) && (code <= (int)('Z'));
 }
 
 void cleanArray(bool *array, int size)
@@ -41,7 +41,7 @@ int main()
 	while (!fin.eof())
 	{
 		fin.get(symbol);
-		int symbolNumber = (int)(symbol) - ((int)('a') * isLowercaseLetter(symbol) + (int)('A') * isCapitalLetter(symbol));
+		int symbolNumber = (int)(symbol) - (isLowercaseLetter(symbol) ? (int)('a') : (int)('A'));
 
 		if ((isCapitalLetter(symbol)) || ((isLowercaseLetter(symbol)) & (!letters[symbolNumber])))
 		{
