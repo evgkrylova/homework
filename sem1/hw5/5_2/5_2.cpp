@@ -43,7 +43,7 @@ int main()
 		fin.get(symbol);
 		int symbolNumber = (int)(symbol) - (isLowercaseLetter(symbol) ? (int)('a') : (int)('A'));
 
-		if ((isCapitalLetter(symbol)) || ((isLowercaseLetter(symbol)) & (!letters[symbolNumber])))
+		if ((isCapitalLetter(symbol)) || ((isLowercaseLetter(symbol)) && (!letters[symbolNumber])))
 		{
 			letters[symbolNumber] = true;
 			cout << symbol;
