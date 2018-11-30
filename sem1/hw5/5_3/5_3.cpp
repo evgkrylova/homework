@@ -45,7 +45,7 @@ void shuntingYard(char *expression, Stack *operatorStack)
 
 		else if (isBinaryOperator(currentElement))
 		{
-			while ((isBinaryOperator(stackFirstElement(operatorStack))) & (binaryOperatorPrecedence(currentElement) <= binaryOperatorPrecedence(stackFirstElement(operatorStack))))
+			while ((isBinaryOperator(stackFirstElement(operatorStack))) && (binaryOperatorPrecedence(currentElement) <= binaryOperatorPrecedence(stackFirstElement(operatorStack))))
 			{
 				cout << pop(operatorStack);
 			}
