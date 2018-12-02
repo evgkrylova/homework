@@ -104,6 +104,7 @@ int main()
 		cin >> choice;
 	}
 
+	deleteTree(tree);
 	return 0;
 }
 
