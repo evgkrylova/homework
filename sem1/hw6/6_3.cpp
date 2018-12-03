@@ -72,7 +72,7 @@ void printPolynomial(int *coefficients, int degree)
 			}
 		}
 
-		if (coefficient != 1)
+		if ((coefficient != 1) || (!exponent))
 		{
 			summandSymbolCounter += coefficientLength;
 			for (int j = coefficientLength - 1; j >= 0; j--)
