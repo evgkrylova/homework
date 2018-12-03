@@ -31,6 +31,8 @@ int main()
 	cout << getDecimalNotation(sum);
 
 	delete[] sum;
+	delete[] firstBinorySummand;
+	delete[] secondBinorySummand;
 
 	return 0;
 }
