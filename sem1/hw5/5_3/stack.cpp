@@ -29,24 +29,20 @@ char pop(Stack *stack)
 
 bool isStackEmpty(Stack *stack)
 {
-	if (stack->first)
-	{
-		return false;
-	}
-	return true;
+	return !stack->first;
 }
 
 void deleteStack(Stack *stack)
 {
 	char deletingElement = stack->first->element;
-	while (stackFirstElement(stack))
+	while (top(stack))
 	{
 		deletingElement = pop(stack);
 	}
 	delete stack;
 }
 
-char stackFirstElement(Stack *stack)
+char top(Stack *stack)
 {
 	if (isStackEmpty(stack))
 	{

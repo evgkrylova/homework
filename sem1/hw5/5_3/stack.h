@@ -16,7 +16,7 @@ void deleteStack(Stack *stack);
 
 void push(Stack *stack, char c);
 bool isStackEmpty(Stack *stack);
-char stackFirstElement(Stack *stack);
+char top(Stack *stack);
 char pop(Stack *stack);
 
 void printStack(Stack *stack); 
