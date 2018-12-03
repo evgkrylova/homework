@@ -5,14 +5,12 @@ using namespace std;
 
 bool isLowercaseLetter(char symbol)
 {
-	int code = (int)(symbol);
-	return (code >= (int)('a')) && (code <= (int)('z'));
+	return (symbol >= 'a') && (symbol <= 'z');
 }
 
 bool isCapitalLetter(char symbol)
 {
-	int code = (int)(symbol);
-	return (code >= (int)('A')) && (code <= (int)('Z'));
+	return (symbol >= 'A') && (symbol <= 'Z');
 }
 
 void cleanArray(bool *array, int size)
@@ -41,7 +39,7 @@ int main()
 	while (!fin.eof())
 	{
 		fin.get(symbol);
-		int symbolNumber = (int)(symbol) - (isLowercaseLetter(symbol) ? (int)('a') : (int)('A'));
+		int symbolNumber = symbol - (isLowercaseLetter(symbol) ? 'a' : 'A');
 
 		if ((isCapitalLetter(symbol)) || ((isLowercaseLetter(symbol)) && (!letters[symbolNumber])))
 		{
@@ -50,7 +48,7 @@ int main()
 			isWordRead = false;
 		}
 
-		if (((isspace(symbol)) || (!isprint(symbol)) || (symbol == '-') || (symbol == '’')) & (!isWordRead))
+		if (((isspace(symbol)) || (!isprint(symbol)) || (symbol == '-') || (symbol == '’')) && (!isWordRead))
 		{
 			cleanArray(letters, lettersAmount);
 			cout << endl;
