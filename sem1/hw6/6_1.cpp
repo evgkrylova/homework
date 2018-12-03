@@ -5,7 +5,7 @@ using namespace std;
 char getSign(double number)
 {
 	unsigned char *binaryForm = (unsigned char*)&number;
-	if (binaryForm[7] & 128)
+	if (binaryForm[7] & 0b10000000)
 		return '-';
 	return '+';
 }
@@ -13,7 +13,7 @@ char getSign(double number)
 int getExponent(double number)
 {
 	unsigned char *binaryForm = (unsigned char*)&number;
-	return (((binaryForm[7] & 0b01111111) << 4) | ((binaryForm[6] & 0b11110000) >> 4)) - 1023;
+	return (((binaryForm[7] & 0b01111111) << 4) | ((binaryForm[6] & 0b11110000) >> 4)) - 0b1111111111;
 }
 
 double getMantissa(double number)
