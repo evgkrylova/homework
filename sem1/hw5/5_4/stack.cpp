@@ -1,4 +1,5 @@
 #include <iostream>
+#include "string.h"
 #include "stack.h"
 
 Stack *createStack()
@@ -29,24 +30,22 @@ double pop(Stack *stack)
 
 bool isStackEmpty(Stack *stack)
 {
-	if (stack->first)
-	{
-		return false;
-	}
-	return true;
+	return !stack->first;
 }
 
 void deleteStack(Stack *stack)
 {
-	double deletingElement = stack->first->element;
-	while (stackFirstElement(stack))
+	StackElement *current = stack->first;
+	while (current)
 	{
-		deletingElement = pop(stack);
+		StackElement *nextElement = current->next;
+		delete current;
+		current = nextElement;
 	}
 	delete stack;
 }
 
-double stackFirstElement(Stack *stack)
+double top(Stack *stack)
 {
 	if (isStackEmpty(stack))
 	{
@@ -57,12 +56,9 @@ double stackFirstElement(Stack *stack)
 
 void printStack(Stack *stack)
 {
-	StackElement *current = stack->first;
-	while (current)
+	while (top(stack))
 	{
-		StackElement *nextElement = current->next;
-		std::cout << current->element;
-		current = nextElement;
+		std::cout << pop(stack);
 	}
 }
 

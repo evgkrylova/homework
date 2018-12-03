@@ -30,11 +30,10 @@ double calculate(char *expression)
 	for (int i = 0; i < strlen(expression); i++)
 	{
 		char currentElement = expression[i];
-		int code = (int)(currentElement);
 
 		if (isdigit(currentElement))
 		{
-			double addingElement = code - (int)('0');
+			double addingElement = currentElement - '0';
 			push(stack, addingElement);
 		}
 
@@ -45,9 +44,8 @@ double calculate(char *expression)
 			push(stack, calculateBasicOperations(firstOperand, secondOperand, currentElement));
 		}
 	}
-	double result = stackFirstElement(stack);
-	deleteStack(stack);
-	return result;
+
+	return top(stack);
 }
 
 int main()
@@ -65,3 +63,4 @@ int main()
 
 	return 0;
 }
+
