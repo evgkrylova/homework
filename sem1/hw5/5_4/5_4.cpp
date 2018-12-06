@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "stack.h"
 
 using namespace std;
@@ -26,8 +27,9 @@ double calculateBasicOperations(double a, double b, char binaryOperator)
 double calculate(char *expression)
 {
 	Stack *stack = createStack();
-
-	for (int i = 0; i < strlen(expression); i++)
+	
+	int length = strlen(expression);
+	for (int i = 0; i < length; i++)
 	{
 		char currentElement = expression[i];
 
