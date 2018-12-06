@@ -13,26 +13,14 @@ struct BinaryTree
 };
 
 BinaryTree *createBinaryTree();
-BinaryTreeNode *createBinaryTreeNode(int value);
-
-void deleteNode(BinaryTreeNode *&node);
 void deleteTree(BinaryTree *&tree);
 
-void addValueToNode(BinaryTreeNode *&node, int value);
 void addValueToTree(BinaryTree *tree, int value);
-
-void deleteValueFromNode(BinaryTreeNode *&node, int value);
-void deleteValueFromTree(BinaryTree *tree, int value);
+void removeValueFromTree(BinaryTree *tree, int value);
+bool isValueInTree(BinaryTree *tree, int value);
+void printTreeInAscendingOrder(BinaryTree *tree);
+void printTreeInDescendingOrder(BinaryTree *tree);
+void printTreeInStorageOrder(BinaryTree *tree);
 
 bool isValueInTree(BinaryTree *tree, int value);
-
-void printNodeInAscendingOrder(BinaryTreeNode *node);
-void printTreeInAscendingOrder(BinaryTree *tree);
-
-void printNodeInDescendingOrder(BinaryTreeNode *node);
-void printTreeInDescendingOrder(BinaryTree *tree);
-
-void printNodeInStorageOrder(BinaryTreeNode *node);
-void printAsTree(BinaryTree *tree);
-
 bool isTreeEmpty(BinaryTree *tree);

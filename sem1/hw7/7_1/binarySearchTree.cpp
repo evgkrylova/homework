@@ -66,16 +66,15 @@ void addValueToTree(BinaryTree *tree, int value)
 	addValueToNode(tree->root, value);
 }
 
-void deleteValueFromNode(BinaryTreeNode *&node, int value)
+void removeValueFromNode(BinaryTreeNode *&node, int value)
 {
 	if (node == nullptr)
 	{
 		return;
 	}
-		
+
 	if (value == node->value)
 	{
-		BinaryTreeNode *deletingNode = node;
 		BinaryTreeNode *changingNode = node->leftChild;
 		BinaryTreeNode *right = node->rightChild;
 
@@ -87,35 +86,35 @@ void deleteValueFromNode(BinaryTreeNode *&node, int value)
 				delete node;
 				return;
 			}
-			node = node->rightChild;
-			delete deletingNode;
+			delete node;
+			node = right;
 			return;
 		}
-		
-		while (changingNode)
+
+		while (changingNode->rightChild)
 		{
 			changingNode = changingNode->rightChild;
 		}
-		deletingNode->value = changingNode->value;
-		changingNode = nullptr;
-		delete changingNode;
+		int changingValue = changingNode->value;
+		removeValueFromNode(node, changingValue);
+		node->value = changingValue;
 		return;
 	}
 
 	if (value < node->value)
 	{
-		return deleteValueFromNode(node->leftChild, value);
+		return removeValueFromNode(node->leftChild, value);
 	}
 
 	if (value > node->value)
 	{
-		return deleteValueFromNode(node->rightChild, value);
+		return removeValueFromNode(node->rightChild, value);
 	}
 }
 
-void deleteValueFromTree(BinaryTree *tree, int value)
+void removeValueFromTree(BinaryTree *tree, int value)
 {
-	deleteValueFromNode(tree->root, value);
+	removeValueFromNode(tree->root, value);
 }
 
 bool isValueInTree(BinaryTree *tree, int value)
@@ -145,7 +144,7 @@ void printNodeInAscendingOrder(BinaryTreeNode *node)
 	{
 		return;
 	}
-	
+
 	printNodeInAscendingOrder(node->leftChild);
 	cout << node->value << ' ';
 	printNodeInAscendingOrder(node->rightChild);
@@ -190,7 +189,7 @@ void printNodeInStorageOrder(BinaryTreeNode *node)
 	cout << ')';
 }
 
-void printAsTree(BinaryTree *tree)
+void printTreeInStorageOrder(BinaryTree *tree)
 {
 	printNodeInStorageOrder(tree->root);
 	cout << endl;
@@ -200,3 +199,4 @@ bool isTreeEmpty(BinaryTree *tree)
 {
 	return tree->root == nullptr;
 }
+
