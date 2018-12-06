@@ -69,7 +69,7 @@ void addValueToTree(AVLTree *tree, int value)
 	addValueToNode(tree->root, value);
 }
 
-void deleteValueFromNode(AVLTreeNode *&node, int value)
+void removeValueFromNode(AVLTreeNode *&node, int value)
 {
 	if (node == nullptr)
 	{
@@ -100,7 +100,7 @@ void deleteValueFromNode(AVLTreeNode *&node, int value)
 		}
 
 		int changingValue = changingNode->value;
-		deleteValueFromNode(node, changingValue);
+		removeValueFromNode(node, changingValue);
 		node->value = changingValue;
 		balanceNode(node);
 		return;
@@ -108,20 +108,20 @@ void deleteValueFromNode(AVLTreeNode *&node, int value)
 
 	if (value < node->value)
 	{
-		deleteValueFromNode(node->leftChild, value);
+		removeValueFromNode(node->leftChild, value);
 	}
 
 	if (value > node->value)
 	{
-		deleteValueFromNode(node->rightChild, value);
+		removeValueFromNode(node->rightChild, value);
 	}
 	
 	balanceNode(node);
 }
 
-void deleteValueFromTree(AVLTree *tree, int value)
+void removeValueFromTree(AVLTree *tree, int value)
 {
-	deleteValueFromNode(tree->root, value);
+	removeValueFromNode(tree->root, value);
 }
 
 bool isValueInTree(AVLTree *tree, int value)
@@ -196,7 +196,7 @@ void printNodeInStorageOrder(AVLTreeNode *node)
 	cout << ')';
 }
 
-void printAsTree(AVLTree *tree)
+void printTreeInStorageOrder(AVLTree *tree)
 {
 	printNodeInStorageOrder(tree->root);
 	cout << endl;

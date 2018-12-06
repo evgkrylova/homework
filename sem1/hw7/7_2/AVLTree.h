@@ -14,28 +14,15 @@ struct AVLTree
 };
 
 AVLTree *createAVLTree();
-AVLTreeNode *createAVLTreeNode(int value);
-
-void deleteNode(AVLTreeNode *&node);
 void deleteTree(AVLTree *&tree);
 
-void addValueToNode(AVLTreeNode *&node, int value);
 void addValueToTree(AVLTree *tree, int value);
-
-void deleteValueFromNode(AVLTreeNode *&node, int value);
-void deleteValueFromTree(AVLTree *tree, int value);
+void removeValueFromTree(AVLTree *tree, int value);
+void printTreeInAscendingOrder(AVLTree *tree);
+void printTreeInDescendingOrder(AVLTree *tree);
+void printTreeInStorageOrder(AVLTree *tree);
 
 bool isValueInTree(AVLTree *tree, int value);
-
-void printNodeInAscendingOrder(AVLTreeNode *node);
-void printTreeInAscendingOrder(AVLTree *tree);
-
-void printNodeInDescendingOrder(AVLTreeNode *node);
-void printTreeInDescendingOrder(AVLTree *tree);
-
-void printNodeInStorageOrder(AVLTreeNode *node);
-void printAsTree(AVLTree *tree);
-
 bool isTreeEmpty(AVLTree *tree);
 
 int height(AVLTreeNode *node);
