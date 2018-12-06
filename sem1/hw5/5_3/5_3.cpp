@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "stack.h"
 
 using namespace std;
@@ -8,7 +9,7 @@ bool isBinaryOperator(char c)
 	return (c == '+') || (c == '-') || (c == '*') || (c == '/');
 }
 
-int binaryOperatorPrecedence(char c)
+int priority(char c)
 {
 	if ((c == '+') || (c == '-'))
 	{
@@ -20,7 +21,8 @@ int binaryOperatorPrecedence(char c)
 void shuntingYard(char *expression, Stack *operatorStack)
 {
 	cout << "Postfix notation of the expression:\n";
-	for (int i = 0; i < strlen(expression); i++)
+	int length = strlen(expression);
+	for (int i = 0; i < length; i++)
 	{
 		char currentElement = expression[i];
 
@@ -45,7 +47,7 @@ void shuntingYard(char *expression, Stack *operatorStack)
 
 		else if (isBinaryOperator(currentElement))
 		{
-			while ((isBinaryOperator(top(operatorStack))) && (binaryOperatorPrecedence(currentElement) <= binaryOperatorPrecedence(top(operatorStack))))
+			while ((isBinaryOperator(top(operatorStack))) && (priority(currentElement) <= priority(top(operatorStack))))
 			{
 				cout << pop(operatorStack);
 			}
