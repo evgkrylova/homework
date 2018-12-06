@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	cout << "Hello. This programme works with data structures called 'Binery Search Tree'.\n";
+	cout << "Hello. This programme works with data structures called 'Binary Search Tree'.\n";
 	cout << "Enter the command if you want:\n\t 0 - to exit;\n";
 	cout << "\t 1 - to add a value;\n";
 	cout << "\t 2 - to remove an existing value;\n";
