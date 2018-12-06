@@ -22,21 +22,20 @@ int main()
 
 	while (choice != 0)
 	{
-		if (choice == 1)
+		switch (choice)
 		{
+		case 1:
 			addSubscriber(book);
-		}
-		else if (choice == 2)
-		{
+			break;
+		case 2:
 			getNumber(book);
-		}
-		else if (choice == 3)
-		{
+			break;
+		case 3:
 			getName(book);
-		}
-		else
-		{
+			break;
+		case 4:
 			saveBookToFile(book);
+			break;
 		}
 		cout << "The process was successfully completed.\n\nYour next command: ";
 		cin >> choice;

@@ -2,7 +2,7 @@
 
 #include "list.h"
 
-struct PhoneBook 
+struct PhoneBook
 {
 	List *body;
 };

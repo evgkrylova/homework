@@ -13,9 +13,9 @@ PhoneBook *createPhoneBook()
 	return phoneBook;
 }
 
-void deletePhoneBook(PhoneBook() *phoneBook)
+void deletePhoneBook(PhoneBook *phoneBook)
 {
-	deleteList(phoneBook->body)
+	deleteList(phoneBook->body);
 	delete phoneBook;
 }
 
