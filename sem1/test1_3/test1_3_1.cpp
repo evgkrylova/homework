@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ int main()
 			
 			if (nextSymbol == '/')
 			{
+				cout << currentSymbol << nextSymbol;
 				do
 				{
 					fin.get(currentSymbol);
