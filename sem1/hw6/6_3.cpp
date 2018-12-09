@@ -2,6 +2,14 @@
 
 using namespace std;
 
+void printArray(char *array, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << array[i];
+	}
+}
+
 int absoluteValue(int number)
 {
 	if (number > 0)
@@ -32,6 +40,53 @@ bool isPositive(int number)
 	return false;
 }
 
+void printCoefficient(int coefficient, int &index, int &counter, char *&string)
+{
+	int coefficientLength = lengthOfNumber(coefficient);
+	counter += coefficientLength;
+	for (int i = coefficientLength - 1; i >= 0; i--)
+	{
+		string[index + i] = (char)(coefficient % 10 + '0');
+		coefficient /= 10;
+	}
+	index += coefficientLength;
+}
+
+void printExponent(int exponent, int &index, int &counter, int &length, char *&string)
+{
+	int exponentLength = lengthOfNumber(exponent);
+	
+	if (!exponent)
+	{
+		length -= 1;
+		length += counter + exponentLength;
+		counter = 0;
+		return;
+	}
+	
+	string[index] = 'x';
+	index++;
+
+	for (int j = 0; j < counter; j++)
+	{
+		cout << ' ';
+	}
+
+	if (exponent > 1)
+	{
+		cout << exponent;
+	}
+
+	for (int j = 0; j < exponentLength; j++)
+	{
+		string[index + j] = ' ';
+	}
+
+	index += exponentLength;
+	length += counter + exponentLength;
+	counter = 0;
+}
+
 void printPolynomial(int *coefficients, int degree)
 {
 	cout << endl;
@@ -58,68 +113,21 @@ void printPolynomial(int *coefficients, int degree)
 		if ((i != 0) || ((i == 0) && (!sign)))
 		{
 			summandSymbolCounter += 2;
-			if (!sign)
-			{
-				bottomString[index] = '-';
-				bottomString[index + 1] = ' ';
-				index += 2;
-			}
-			else
-			{
-				bottomString[index] = '+';
-				bottomString[index + 1] = ' ';
-				index += 2;
-			}
+			bottomString[index] = sign ? '+' : '-';
+			bottomString[index + 1] = ' ';
+			index += 2;
 		}
 
 		if ((coefficient != 1) || (!exponent))
 		{
-			summandSymbolCounter += coefficientLength;
-			for (int j = coefficientLength - 1; j >= 0; j--)
-			{
-				bottomString[index + j] = (char)(coefficient % 10 + (int)('0'));
-				coefficient /= 10;
-			}
-			index += coefficientLength;
+			printCoefficient(coefficient, index, summandSymbolCounter, bottomString);
 		}
 
-		if (exponent)
-		{
-			bottomString[index] = 'x';
-			index++;
-
-			for (int j = 0; j < summandSymbolCounter; j++)
-			{
-				cout << ' ';
-			}
-			if (exponent > 1)
-			{
-				cout << exponent;
-			}
-
-			for (int j = 0; j < exponentLength; j++)
-			{
-				bottomString[index + j] = ' ';
-			}
-			index += exponentLength;
-		}
-
-		length += summandSymbolCounter + exponentLength;
-		summandSymbolCounter = 0;
-
-		if (!exponent)
-		{
-			length -= 1;
-		}
+		printExponent(exponent, index, summandSymbolCounter, length, bottomString);
 	}
-
-	length -= 1;
 
 	cout << endl;
-	for (int i = 0; i < length; i++)
-	{
-		cout << bottomString[i];
-	}
+	printArray(bottomString, length - 1);
 }
 
 int main()
