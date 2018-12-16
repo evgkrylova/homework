@@ -21,4 +21,3 @@ void deleteQueue(Queue *queue);
 AVLTreeNode *pushFromQueue(Queue *queue);
 AVLTree *spliceOfNodes(Queue *queue);
 
-void huffmanCoding(AVLTree *tree, char *digits, char **symbols);

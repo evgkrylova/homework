@@ -30,3 +30,4 @@ void printTreeInStorageOrder(AVLTree *tree, ofstream &fout);
 
 bool isSymbolInTree(AVLTree *tree, char symbol);
 bool isTreeEmpty(AVLTree *tree);
+void huffmanCoding(AVLTree *tree, char *digits, char **symbols);
