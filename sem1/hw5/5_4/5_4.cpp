@@ -27,7 +27,7 @@ double calculateBasicOperations(double a, double b, char binaryOperator)
 double calculate(char *expression)
 {
 	Stack *stack = createStack();
-	
+
 	int length = strlen(expression);
 	for (int i = 0; i < length; i++)
 	{
@@ -47,7 +47,9 @@ double calculate(char *expression)
 		}
 	}
 
-	return top(stack);
+	double result = top(stack);
+	deleteStack(stack);
+	return result;
 }
 
 int main()
