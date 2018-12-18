@@ -21,38 +21,40 @@ void deletePhoneBook(PhoneBook *phoneBook)
 
 void getNumber(PhoneBook *phoneBook)
 {
-	List *book = phoneBook->body;
-
 	char* name = new char[100];
 	cout << "Enter the name whose number you wnat to know: ";
 	cin >> name;
-	if (getNumberByName(book, name))
+
+	if (getNumberByName(phoneBook->body, name))
 	{
-		cout << "This person's number: " << getNumberByName(book, name) << endl;
+		cout << "This person's number: " << getNumberByName(phoneBook->body, name) << endl;
+		delete[] name;
 		return;
 	}
+
+	delete[] name;
 	cout << "There is not this person in the phone book.\n";
 }
 
 void getName(PhoneBook *phoneBook)
 {
-	List *book = phoneBook->body;
-
 	char* number = new char[100];
 	cout << "Enter the number to know who owns it: ";
 	cin >> number;
-	if (getNameByNumber(book, number))
+
+	if (getNameByNumber(phoneBook->body, number))
 	{
-		cout << "The owner of the number: " << getNameByNumber(book, number) << endl;
+		cout << "The owner of the number: " << getNameByNumber(phoneBook->body, number) << endl;
+		delete[] number;
 		return;
 	}
+
+	delete[] number;
 	cout << "There is not this number in the phone book.\n";
 }
 
 void addSubscriber(PhoneBook *phoneBook)
 {
-	List *book = phoneBook->body;
-
 	char* name = new char[100];
 	cout << "Enter the name of subscriber you want to add: ";
 	cin >> name;
@@ -61,19 +63,19 @@ void addSubscriber(PhoneBook *phoneBook)
 	cout << "Enter the number of subscriber you want to add: ";
 	cin >> number;
 
-	addToList(book, name, number);
+	addToList(phoneBook->body, name, number);
 }
 
 void getBookFromFile(PhoneBook *phoneBook)
 {
-	List *book = phoneBook->body;
-
 	ifstream fin;
 	fin.open("input.txt");
+
 	if (!fin)
 	{
 		return;
 	}
+
 	while (!(fin.eof()))
 	{
 		char* name = new char[100];
@@ -82,25 +84,25 @@ void getBookFromFile(PhoneBook *phoneBook)
 		char* number = new char[100];
 		fin.getline(number, 100);
 
-		addToList(book, name, number);
-		char* space = new char[1];
-		fin.getline(space, 1);
+		addToList(phoneBook->body, name, number);
+		char space = '\0';
+		fin.get(space);
 	}
+
 	fin.close();
 }
 
 void saveBookToFile(PhoneBook *phoneBook)
 {
-	List *book = phoneBook->body;
-
 	ofstream fout;
 	fout.open("input.txt");
 
-	for (int i = 0; i < listSize(book); i++)
+	for (int i = 0; i < listSize(phoneBook->body); i++)
 	{
-		fout << getNameByIndex(book, i) << endl;
-		fout << getNumberByIndex(book, i) << endl << endl;
+		fout << getNameByIndex(phoneBook->body, i) << endl;
+		fout << getNumberByIndex(phoneBook->body, i) << endl << endl;
 	}
+
 	fout.close();
 }
 

@@ -10,6 +10,7 @@ List *createList()
 void deleteList(List *list)
 {
 	ListElement *current = list->first;
+	
 	while (current)
 	{
 		ListElement *nextElement = current->next;
@@ -24,11 +25,13 @@ int listSize(List *list)
 {
 	ListElement *current = list->first;
 	int length = 0;
+	
 	while (current)
 	{
 		length++;
 		current = current->next;
 	}
+	
 	return length;
 }
 
@@ -36,6 +39,7 @@ char *getNameByIndex(List *list, int index)
 {
 	ListElement *current = list->first;
 	int counter = 0;
+	
 	while (current)
 	{
 		if (counter == index)
@@ -45,6 +49,7 @@ char *getNameByIndex(List *list, int index)
 		counter += 1;
 		current = current->next;
 	}
+	
 	return '\0';
 }
 
@@ -52,6 +57,7 @@ char *getNumberByIndex(List *list, int index)
 {
 	ListElement *current = list->first;
 	int counter = 0;
+	
 	while (current)
 	{
 		if (counter == index)
@@ -61,12 +67,14 @@ char *getNumberByIndex(List *list, int index)
 		counter += 1;
 		current = current->next;
 	}
+	
 	return '\0';
 }
 
 char *getNumberByName(List *list, char *name)
 {
 	ListElement *current = list->first;
+	
 	while (current)
 	{
 		if (isStringsEquivalent(name, current->name))
@@ -75,12 +83,14 @@ char *getNumberByName(List *list, char *name)
 		}
 		current = current->next;
 	}
+	
 	return '\0';
 }
 
 char *getNameByNumber(List *list, char *number)
 {
 	ListElement *current = list->first;
+	
 	while (current)
 	{
 		if (isStringsEquivalent(number, current->number))
@@ -89,23 +99,26 @@ char *getNameByNumber(List *list, char *number)
 		}
 		current = current->next;
 	}
+	
 	return '\0';
 }
 
 void addToList(List *list, char *name, char *number)
 {
-	ListElement *newElement = new ListElement{ name, number, nullptr };
 	ListElement *current = list->first;
+
 	if (list->first == nullptr)
 	{
-		list->first = newElement;
+		list->first = new ListElement{ name, number, nullptr };
 		return;
 	}
+
 	while (current->next)
 	{
 		current = current->next;
 	}
-	current->next = newElement;
+
+	current->next = new ListElement{ name, number, nullptr };
 }
 
 bool isStringsEquivalent(char *first, char *second)
@@ -114,6 +127,7 @@ bool isStringsEquivalent(char *first, char *second)
 	{
 		return false;
 	}
+
 	for (int i = 0; i < strlen(first); i++)
 	{
 		if (first[i] != second[i])
@@ -121,6 +135,7 @@ bool isStringsEquivalent(char *first, char *second)
 			return false;
 		}
 	}
+
 	return true;
 }
 
