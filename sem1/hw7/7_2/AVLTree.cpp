@@ -5,9 +5,7 @@ using namespace std;
 
 AVLTree *createAVLTree()
 {
-	AVLTree* newTree = new AVLTree;
-	newTree->root = nullptr;
-	return newTree;
+	return new AVLTree{ nullptr };
 }
 
 AVLTreeNode *createAVLTreeNode(int value)
@@ -20,21 +18,20 @@ AVLTreeNode *createAVLTreeNode(int value)
 	return newNode;
 }
 
-void deleteNode(AVLTreeNode *&node)
+void deleteNode(AVLTreeNode *node)
 {
 	if (node == nullptr)
-	{
 		return;
-	}
+
 	deleteNode(node->leftChild);
 	deleteNode(node->rightChild);
-
 	delete node;
 }
 
 void deleteTree(AVLTree *&tree)
 {
 	deleteNode(tree->root);
+	tree->root = nullptr;
 	delete tree;
 }
 
@@ -71,51 +68,58 @@ void addValueToTree(AVLTree *tree, int value)
 
 void removeValueFromNode(AVLTreeNode *&node, int value)
 {
-	if (node == nullptr)
+	if (node->value == value)
 	{
-		return;
-	}
-
-	if (value == node->value)
-	{
-		AVLTreeNode *changingNode = node->leftChild;
-		AVLTreeNode *right = node->rightChild;
-
-		if (!changingNode)
+		if ((node->leftChild == nullptr) && (node->rightChild == nullptr)) 
 		{
-			if (!right)
-			{
-				node = nullptr;
-				delete node;
-				return;
-			}
 			delete node;
-			node = right;
-			return;
+			node = nullptr;
 		}
 
-		while (changingNode->rightChild)
+		else if ((node->leftChild != nullptr) && (node->rightChild != nullptr))
 		{
-			changingNode = changingNode->rightChild;
+			AVLTreeNode *changingNode = node->leftChild;
+
+			while (changingNode->rightChild != nullptr)
+			{
+				changingNode = changingNode->rightChild;
+			}
+
+			int changingValue = changingNode->value;
+			removeValueFromNode(node, changingNode->value);
+			node->value = changingValue;
+			balanceNode(node);
 		}
 
-		int changingValue = changingNode->value;
-		removeValueFromNode(node, changingValue);
-		node->value = changingValue;
-		balanceNode(node);
+		else if (node->leftChild != nullptr) 
+		{
+			AVLTreeNode *changingNode = node->leftChild;
+			delete node;
+			node = changingNode;
+			balanceNode(node);
+		}
+
+		else if (node->rightChild != nullptr)
+		{
+			AVLTreeNode *changingNode = node->rightChild;
+			delete node;
+			node = changingNode;
+			balanceNode(node);
+		}
+
 		return;
 	}
 
 	if (value < node->value)
 	{
-		removeValueFromNode(node->leftChild, value);
+		return removeValueFromNode(node->leftChild, value);
 	}
 
 	if (value > node->value)
 	{
-		removeValueFromNode(node->rightChild, value);
+		return removeValueFromNode(node->rightChild, value);
 	}
-	
+
 	balanceNode(node);
 }
 
