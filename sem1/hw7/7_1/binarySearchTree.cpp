@@ -5,36 +5,44 @@ using namespace std;
 
 BinaryTree *createBinaryTree()
 {
-	BinaryTree* newTree = new BinaryTree;
-	newTree->root = nullptr;
-	return newTree;
+	return new BinaryTree{ nullptr };
 }
 
 BinaryTreeNode *createBinaryTreeNode(int value)
 {
-	BinaryTreeNode *newNode = new BinaryTreeNode;
-	newNode->value = value;
-	newNode->leftChild = nullptr;
-	newNode->rightChild = nullptr;
-	return newNode;
+	return new BinaryTreeNode{ value, nullptr, nullptr };
 }
 
 void deleteNode(BinaryTreeNode *&node)
 {
-	if (node == nullptr)
+	if (node->leftChild != nullptr)
 	{
-		return;
+		deleteNode(node->leftChild);
 	}
-	deleteNode(node->leftChild);
-	deleteNode(node->rightChild);
+
+	if (node->rightChild != nullptr)
+	{
+		deleteNode(node->rightChild);
+	}
 
 	delete node;
+	node = nullptr;
+}
+
+void clearBinaryTree(BinaryTree *tree)
+{
+	if (tree->root != nullptr)
+	{
+		deleteNode(tree->root);
+	}
 }
 
 void deleteTree(BinaryTree *&tree)
 {
-	deleteNode(tree->root);
+	clearBinaryTree(tree);
+
 	delete tree;
+	tree = nullptr;
 }
 
 void addValueToNode(BinaryTreeNode *&node, int value)
@@ -66,39 +74,58 @@ void addValueToTree(BinaryTree *tree, int value)
 	addValueToNode(tree->root, value);
 }
 
+void deleteChilds(BinaryTreeNode *node, BinaryTreeNode *&changingNode, BinaryTreeNode *&right)
+{
+	if (!node->leftChild)
+	{
+		deleteNode(changingNode);
+	}
+	if (!node->rightChild)
+	{
+		deleteNode(right);
+	}
+}
+
 void removeValueFromNode(BinaryTreeNode *&node, int value)
 {
-	if (node == nullptr)
+	if (node->value == value)
 	{
-		return;
-	}
-
-	if (value == node->value)
-	{
-		BinaryTreeNode *changingNode = node->leftChild;
-		BinaryTreeNode *right = node->rightChild;
-
-		if (!changingNode)
+		if ((node->leftChild == nullptr) && (node->rightChild == nullptr)) 
 		{
-			if (!right)
-			{
-				node = nullptr;
-				delete node;
-				return;
-			}
 			delete node;
-			node = right;
-			return;
+			node = nullptr;
 		}
 
-		while (changingNode->rightChild)
+		else if ((node->leftChild != nullptr) && (node->rightChild != nullptr))
 		{
-			changingNode = changingNode->rightChild;
+			BinaryTreeNode *changingNode = node->leftChild;
+
+			while (changingNode->rightChild != nullptr)
+			{
+				changingNode = changingNode->rightChild;
+			}
+
+			int changingValue = changingNode->value;
+			removeValueFromNode(node, changingNode->value);
+			node->value = changingValue;
 		}
-		int changingValue = changingNode->value;
-		removeValueFromNode(node, changingValue);
-		node->value = changingValue;
+
+		else if (node->leftChild != nullptr) 
+		{
+			BinaryTreeNode *changingNode = node->leftChild;
+			delete node;
+			node = changingNode;
+		}
+
+		else if (node->rightChild != nullptr)
+		{
+			BinaryTreeNode *changingNode = node->rightChild;
+			delete node;
+			node = changingNode;
+		}
+
 		return;
+
 	}
 
 	if (value < node->value)
