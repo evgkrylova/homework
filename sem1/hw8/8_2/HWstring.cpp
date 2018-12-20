@@ -1,4 +1,6 @@
 #include <iostream>
+#include <istream>
+#include <string.h>
 #include "HWstring.h"
 
 using namespace std;
@@ -22,7 +24,9 @@ void readString(String *string)
 	char *readingString = new char[maxLength];
 
 	char currentSymbol = '\0';
-	cin.ignore(cin.rdbuf()->in_avail());
+	streamsize n = 1;
+	int delim = EOF;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	cin.get(currentSymbol);
 
 	int index = 0;
@@ -41,6 +45,8 @@ void readString(String *string)
 	{
 		string->symbols[i] = readingString[i];
 	}
+
+	delete[] readingString;
 }
 
 String *clone(String *string)
@@ -70,20 +76,7 @@ String *concatenate(String *firstString, String *secondString)
 
 bool areEqual(String *firstString, String *secondString)
 {
-	if (firstString->length != secondString->length)
-	{
-		return false;
-	}
-
-	for (int i = 0; i < firstString->length; i++)
-	{
-		if (firstString->symbols[i] != secondString->symbols[i])
-		{
-			return false;
-		}
-	}
-
-	return true;
+	return !strcmp(firstString->symbols, secondString->symbols);
 }
 
 int length(String *string)
@@ -126,4 +119,3 @@ void printString(String *string)
 		cout << array[i];
 	}
 }
-

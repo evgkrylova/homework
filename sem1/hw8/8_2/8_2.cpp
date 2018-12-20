@@ -6,7 +6,6 @@ using namespace std;
 int main()
 {
 	String *string = createString();
-	String *secondString = createString();
 
 	cout << "Hello. This programme works with data structures called 'String'.\n";
 	cout << "Enter the command if you want:\n\t 0 - to exit;\n";
@@ -21,8 +20,9 @@ int main()
 		return 0;
 	}
 
-	cout << "\nEnter the string: ";
+	cout << "Enter the string: ";
 	readString(string);
+	cout << endl;
 
 	cout << "Enter the command if you want:\n\t 0 - to exit;\n";
 	cout << "\t 1 - to print the string;\n";
@@ -34,29 +34,33 @@ int main()
 	cout << "\nYour command: ";
 
 	cin >> choice;
-	
 
 	while (choice != 0)
 	{
+		String * secondString = createString();
 		switch (choice)
 		{
 		case 1:
 			cout << "String: ";
 			printString(string);
 			break;
+
 		case 2:
 			cout << "Length: " << length(string);
 			break;
+
 		case 3:
 			cout << "Clone: ";
 			printString(clone(string));
 			break;
+
 		case 4:
 			cout << "Enter the second string: ";
 			readString(secondString);
 			cout << "Concatination: ";
 			printString(concatenate(string, secondString));
 			break;
+
 		case 5:
 			cout << "Enter the second string: ";
 			readString(secondString);
@@ -67,6 +71,7 @@ int main()
 			}
 			cout << "the same.";
 			break;
+
 		case 6:
 			int firstSymbol = -1;
 			cout << "Enter a number of the first symbol: ";
@@ -81,9 +86,9 @@ int main()
 
 		cout << "\nThe process was successfully completed.\n\nYour next command: ";
 		cin >> choice;
+		deleteString(secondString);
 	}
 
 	deleteString(string);
 	return 0;
 }
-
