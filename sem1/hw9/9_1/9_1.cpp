@@ -35,6 +35,7 @@ int main()
 
 	deleteGraph(graph);
 	delete[] capitals;
+	deleteListOfList(countries);
 
 	return 0;
 }

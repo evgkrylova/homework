@@ -79,3 +79,13 @@ int getValue(List *list, int index)
 
 	return current->value;
 }
+
+void deleteArrayOfArrays(int **&array, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		delete[] array[i];
+	}
+
+	delete[] array;
+}

@@ -20,3 +20,4 @@ void print(List *list);
 int getValue(List *list, int index);
 
 int size(List *list);
+void deleteArrayOfArrays(int **&array, int size);

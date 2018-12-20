@@ -12,14 +12,7 @@ Graph *createGraph()
 
 void deleteGraph(Graph *&graph)
 {
-	int size = graph->cardinality;
-
-	for (int i = 0; i < size; i++)
-	{
-		delete[] graph->edges[i];
-	}
-
-	delete[] graph->edges;
+	deleteArrayOfArrays(graph->edges, graph->cardinality);
 	delete graph;
 }
 

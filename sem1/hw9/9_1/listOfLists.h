@@ -1,7 +1,7 @@
 #pragma once
 #include "list.h"
 
-struct ListOfLists{
+struct ListOfLists {
 	List *first;
 };
 

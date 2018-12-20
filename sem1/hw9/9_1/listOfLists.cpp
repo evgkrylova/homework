@@ -13,7 +13,6 @@ void addList(ListOfLists *list, List *element)
 
 	if (!list->first)
 	{
-		list->first = new List{ nullptr };
 		list->first = element;
 		return;
 	}
@@ -22,8 +21,8 @@ void addList(ListOfLists *list, List *element)
 	{
 		current = current->next;
 	}
-	List *newElement = element;
-	current->next = newElement;
+
+	current->next = element;
 }
 
 List *getList(ListOfLists *list, int index)
@@ -70,4 +69,3 @@ void deleteListOfList(ListOfLists *list)
 
 	delete list;
 }
-
