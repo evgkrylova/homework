@@ -24,6 +24,7 @@ void deleteHashTable(HashTable *table)
 			if (table->bucket[i])
 			{
 				deleteString(table->bucket[i]->word);
+				delete table->bucket[i];
 			}
 		}
 		delete[] table->bucket;
@@ -34,11 +35,13 @@ void deleteHashTable(HashTable *table)
 int hashKey(String *string)
 {
 	int key = 0;
+
 	for (int i = 0; i < length(string); i++)
 	{
 		char currentSymbol = string->symbols[i];
 		key = (key * primeNumber + currentSymbol) % hashTableSize;
 	}
+
 	return key;
 }
 
@@ -49,7 +52,7 @@ void quadraticProbing(int &key, int attemptNumber)
 
 double loadFactor(HashTable *table)
 {
-	return (double) table->wordsNumber / hashTableSize;
+	return (double)table->wordsNumber / hashTableSize;
 }
 
 int maximumAttemptsNumber(HashTable *table)
@@ -60,6 +63,7 @@ int maximumAttemptsNumber(HashTable *table)
 	}
 
 	int currentMaximum = 0;
+
 	for (int i = 0; i < hashTableSize; i++)
 	{
 		if (table->bucket[i])
@@ -68,12 +72,14 @@ int maximumAttemptsNumber(HashTable *table)
 			currentMaximum = (currentMaximum < currentAttemptsNumber) ? currentAttemptsNumber : currentMaximum;
 		}
 	}
+
 	return currentMaximum;
 }
 
 double averageAttemptsNumber(HashTable *table)
 {
 	int attemptsSum = 0;
+
 	for (int i = 0; i < hashTableSize; i++)
 	{
 		if (table->bucket[i])
@@ -81,18 +87,21 @@ double averageAttemptsNumber(HashTable *table)
 			attemptsSum += table->bucket[i]->attemptsNumber;
 		}
 	}
-	return (double) attemptsSum / table->wordsNumber;
+
+	return (double)attemptsSum / table->wordsNumber;
 }
 
 void printWordsWithMaximumAttemptsNumber(HashTable *table)
 {
 	int maximum = maximumAttemptsNumber(table);
+
 	for (int i = 0; i < hashTableSize; ++i)
 	{
 		if ((table->bucket[i]) && (table->bucket[i]->attemptsNumber == maximum))
 		{
 			std::cout << '\n';
-			printString(table->bucket[i]->word);
+			String *string = table->bucket[i]->word;
+			printString(string);
 		}
 	}
 }
@@ -118,8 +127,7 @@ bool isWordInTable(HashTable *table, String *string)
 		quadraticProbing(key, attemptNumber);
 		attemptNumber++;
 		storingWord = table->bucket[key]->word;
-	} 
-	while (!areEqual(storingWord, string) && !isEmpty(storingWord));
+	} while (!areEqual(storingWord, string) && !isEmpty(storingWord));
 
 	return areEqual(storingWord, string);
 }
@@ -127,25 +135,22 @@ bool isWordInTable(HashTable *table, String *string)
 void addWord(HashTable *table, String *string)
 {
 	int key = hashKey(string);
-	String *storingWord = table->bucket[key] ? table->bucket[key]->word : createString();
 
 	if (!table->bucket[key])
 	{
-		table->bucket[key] = new Bucket{ storingWord, 0, 0 };
-	}
-
-	if (isEmpty(storingWord))
-	{
+		table->bucket[key] = new Bucket{ nullptr, 0, 0 };
 		table->bucket[key]->word = string;
 		table->bucket[key]->sameOnesNumber++;
 		table->bucket[key]->attemptsNumber++;
 		table->wordsNumber++;
+
 		return;
 	}
 
-	if (areEqual(storingWord, string))
+	if (areEqual(table->bucket[key]->word, string))
 	{
 		table->bucket[key]->sameOnesNumber++;
+		deleteString(string);
 		return;
 	}
 
@@ -154,9 +159,7 @@ void addWord(HashTable *table, String *string)
 	{
 		quadraticProbing(key, attemptNumber);
 		attemptNumber++;
-		storingWord = table->bucket[key]->word;
-	} 
-	while (!isEmpty(storingWord));
+	} while (!isEmpty(table->bucket[key]->word));
 
 	table->bucket[key]->word = string;
 	table->bucket[key]->sameOnesNumber++;
@@ -177,3 +180,4 @@ void printHashTable(HashTable *table)
 		}
 	}
 }
+

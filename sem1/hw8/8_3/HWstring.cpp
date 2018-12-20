@@ -41,6 +41,8 @@ void readString(String *string)
 	{
 		string->symbols[i] = readingString[i];
 	}
+
+	delete[] readingString;
 }
 
 String *clone(String *string)
@@ -126,3 +128,4 @@ void printString(String *string)
 		cout << array[i];
 	}
 }
+

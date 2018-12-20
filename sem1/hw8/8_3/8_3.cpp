@@ -16,7 +16,7 @@ bool isLetter(char c)
 	return false;
 }
 
-String *readWord(ifstream &fin)
+void readWord(ifstream &fin, HashTable *table)
 {
 	char *word = new char[maxWordLength];
 	int index = 0;
@@ -32,7 +32,15 @@ String *readWord(ifstream &fin)
 		}
 	}
 
-	return new String{ index, word };
+	if (index > 0)
+	{
+		addWord(table, new String{ index, word });
+	}
+
+	else
+	{
+		delete[] word;
+	}
 }
 
 int main()
@@ -41,12 +49,10 @@ int main()
 	fin.open("input.txt");
 
 	HashTable *table = createHashTable();
-	String *word = createString();
 
 	while (!fin.eof())
 	{
-		word = readWord(fin);
-		addWord(table, word);
+		readWord(fin, table);
 	}
 
 	int choice = -1;
@@ -89,9 +95,8 @@ int main()
 		cin >> choice;
 	}
 
-	deleteString(word);
 	deleteHashTable(table);
+	fin.close();
 
 	return 0;
 }
-
