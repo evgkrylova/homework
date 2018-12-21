@@ -1,4 +1,4 @@
 #pragma once
-#include "binarySearchTree.h"
+#include "binaryTree.h"
 
 void huffmanCoding(BinaryTree *tree, char *digits, char **symbols);

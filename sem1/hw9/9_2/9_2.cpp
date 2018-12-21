@@ -82,5 +82,7 @@ int main()
 	}
 	delete[] symbols;
 
+	delete[] string;
+
 	return 0;
 }

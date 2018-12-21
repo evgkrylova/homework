@@ -1,15 +1,10 @@
+#include <iostream>
 #include "queue.h"
 #include "binaryTree.h"
 
 QueueElement *createQueueElement(BinaryTreeNode *value, int priority, QueueElement *next)
 {
-	QueueElement *newQueueElement = new QueueElement;
-
-	newQueueElement->priority = priority;
-	newQueueElement->value = value;
-	newQueueElement->next = next;
-
-	return newQueueElement;
+	return new QueueElement{ value, priority, next};
 }
 
 Queue *createQueue()
@@ -23,6 +18,7 @@ Queue *createQueue()
 
 void addToQueue(BinaryTreeNode *value, int priority, Queue *queue)
 {
+
 	QueueElement *temp = queue->first;
 
 	while (temp->next != queue->last && priority > temp->next->priority)
@@ -49,6 +45,9 @@ BinaryTree *buildHuffmanTreeFromQueue(Queue *queue)
 
 		queue->first->next = queue->first->next->next->next;
 		addToQueue(newNode, newPriority, queue);
+
+		delete firstQueueElement;
+		delete secondQueueElement;
 	}
 
 	BinaryTree *tree = createBinaryTree(queue->first->next->value);
@@ -72,12 +71,18 @@ bool queueIsEmpty(Queue *queue)
 
 void deleteQueue(Queue *queue)
 {
-	while (!queueIsEmpty(queue))
+	QueueElement *current = queue->first;
+
+	if (!queueIsEmpty(queue))
 	{
-		popFromQueue(queue);
+		while (current->next)
+		{
+			QueueElement *next = current->next;
+			delete current;
+			current = next;
+		}
 	}
 
-	delete queue->first;
-	delete queue->last;
+	delete current;
 	delete queue;
 }

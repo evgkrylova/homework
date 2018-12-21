@@ -36,4 +36,3 @@ void huffmanCoding(BinaryTree *tree, char *digits, char **symbols)
 	huffmanCodingForNode(tree->root, digits, symbols, 0);
 }
 
-
