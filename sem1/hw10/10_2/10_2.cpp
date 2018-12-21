@@ -1,6 +1,6 @@
 #include <iostream>
 #include "HWstring.h"
-#include "entrances.h"
+#include "rabinKarp.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ int main()
 		indexes[i] = -1;
 	}
 
-	getEntrances(string, subString, indexes);
+	rabinKarp(string, subString, indexes);
 
 	int counter = 0;
 	if (indexes[counter] == -1)
