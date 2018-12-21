@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "AVLTree.h"
+#include "binaryTree.h"
+#include "huffman.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int main()
 	ofstream fout;
 	fout.open("output.txt");
 
-	AVLTree *tree = createAVLTree(fin);
+	BinaryTree *tree = createBinaryTree(fin);
 
 	huffmanDecoding(tree, fin, fout);
 	deleteTree(tree);
@@ -21,4 +22,3 @@ int main()
 	fout.close();
 
 	return 0;
-}
