@@ -1,7 +1,7 @@
-#include "AVLTree.h"
 #include "queue.h"
+#include "binaryTree.h"
 
-QueueElement *createQueueElement(AVLTreeNode *value, int priority, QueueElement *next)
+QueueElement *createQueueElement(BinaryTreeNode *value, int priority, QueueElement *next)
 {
 	QueueElement *newQueueElement = new QueueElement;
 
@@ -15,14 +15,13 @@ QueueElement *createQueueElement(AVLTreeNode *value, int priority, QueueElement 
 Queue *createQueue()
 {
 	Queue *newQueue = new Queue;
-
 	newQueue->last = createQueueElement(nullptr, 0, nullptr);
 	newQueue->first = createQueueElement(nullptr, 0, newQueue->last);
 
 	return newQueue;
 }
 
-void addToQueue(AVLTreeNode *value, int priority, Queue *queue)
+void addToQueue(BinaryTreeNode *value, int priority, Queue *queue)
 {
 	QueueElement *temp = queue->first;
 
@@ -35,13 +34,13 @@ void addToQueue(AVLTreeNode *value, int priority, Queue *queue)
 	temp->next = newQueueElement;
 }
 
-AVLTree *spliceOfNodes(Queue *queue)
+BinaryTree *buildHuffmanTreeFromQueue(Queue *queue)
 {
 	while (queue->first->next->next != queue->last)
 	{
-		AVLTreeNode *firstNode = queue->first->next->value;
-		AVLTreeNode *secondNode = queue->first->next->next->value;
-		AVLTreeNode *newNode = createAVLTreeNode('0', firstNode, secondNode);
+		BinaryTreeNode *firstNode = queue->first->next->value;
+		BinaryTreeNode *secondNode = queue->first->next->next->value;
+		BinaryTreeNode *newNode = createBinaryTreeNode('0', firstNode, secondNode);
 
 		int newPriority = queue->first->next->priority + queue->first->next->next->priority;
 
@@ -52,16 +51,17 @@ AVLTree *spliceOfNodes(Queue *queue)
 		addToQueue(newNode, newPriority, queue);
 	}
 
-	AVLTree *tree = createAVLTree(queue->first->next->value);
+	BinaryTree *tree = createBinaryTree(queue->first->next->value);
 	return tree;
 }
 
-AVLTreeNode *pushFromQueue(Queue *queue)
+BinaryTreeNode *popFromQueue(Queue *queue)
 {
-	AVLTreeNode *result = queue->first->next->value;
+	BinaryTreeNode *result = queue->first->next->value;
 	QueueElement *queueElement = queue->first->next;
 	queue->first->next = queue->first->next->next;
 	delete queueElement;
+
 	return result;
 }
 
@@ -74,7 +74,7 @@ void deleteQueue(Queue *queue)
 {
 	while (!queueIsEmpty(queue))
 	{
-		pushFromQueue(queue);
+		popFromQueue(queue);
 	}
 
 	delete queue->first;

@@ -1,9 +1,9 @@
 #pragma once
-#include "AVLTree.h"
+#include "binaryTree.h"
 
 struct QueueElement
 {
-	AVLTreeNode *value;
+	BinaryTreeNode *value;
 	int priority;
 	QueueElement *next;
 };
@@ -14,10 +14,10 @@ struct Queue
 	QueueElement *last;
 };
 
-void addToQueue(AVLTreeNode *value, int priority, Queue *queue);
+void addToQueue(BinaryTreeNode *value, int priority, Queue *queue);
 Queue *createQueue();
 bool queueIsEmpty(Queue *queue);
 void deleteQueue(Queue *queue);
-AVLTreeNode *pushFromQueue(Queue *queue);
-AVLTree *spliceOfNodes(Queue *queue);
+BinaryTreeNode *popFromQueue(Queue *queue);
+BinaryTree *buildHuffmanTreeFromQueue(Queue *queue);
 

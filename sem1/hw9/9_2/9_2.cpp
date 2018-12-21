@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include "AVLTree.h"
+#include "binaryTree.h"
 #include "queue.h"
+#include "huffman.h"
 
 using namespace std;
 
@@ -13,12 +14,12 @@ int main()
 	ofstream fout;
 	fout.open("output.txt");
 
-	const int standartSize = 256;
+	const int standartStringSize = 256;
 
 	Queue *queue = createQueue();
-	int *string = new int[standartSize];
+	int *string = new int[standartStringSize];
 
-	for (int i = 0; i < standartSize; i++)
+	for (int i = 0; i < standartStringSize; i++)
 	{
 		string[i] = 0;
 	}
@@ -30,28 +31,28 @@ int main()
 
 		if (!fin.eof())
 		{
-			string[(int)(current)]++;
+			string[current]++;
 		}
 	}
 
-	for (int i = 0; i < standartSize; i++)
+	for (int i = 0; i < standartStringSize; i++)
 	{
 		if (string[i] != 0)
 		{
-			AVLTreeNode *node = createAVLTreeNode(i, nullptr, nullptr);
+			BinaryTreeNode *node = createBinaryTreeNode(i, nullptr, nullptr);
 			addToQueue(node, string[i], queue);
 		}
 	}
 
-	AVLTree *tree = spliceOfNodes(queue);
+	BinaryTree *tree = buildHuffmanTreeFromQueue(queue);
 	printTreeInStorageOrder(tree, fout);
 	fout << '\n';
 
 	const int digitsNumber = 9;
 	char digits[digitsNumber];
-	char **symbols = new char *[standartSize];
+	char **symbols = new char *[standartStringSize];
 
-	for (int i = 0; i < standartSize; i++)
+	for (int i = 0; i < standartStringSize; i++)
 	{
 		symbols[i] = new char[digitsNumber];
 	}
@@ -75,7 +76,7 @@ int main()
 	deleteQueue(queue);
 	deleteTree(tree);
 
-	for (int i = 0; i < standartSize; i++)
+	for (int i = 0; i < standartStringSize; i++)
 	{
 		delete[] symbols[i];
 	}
