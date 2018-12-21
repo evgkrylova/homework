@@ -114,11 +114,14 @@ void deleteQueue(Queue *queue)
 {
 	QueueElement *current = queue->first;
 
-	while (current->next)
+	if (!queueIsEmpty(queue))
 	{
-		QueueElement *next = current->next;
-		delete current;
-		current = next;
+		while (current->next)
+		{
+			QueueElement *next = current->next;
+			delete current;
+			current = next;
+		}
 	}
 
 	delete current;
