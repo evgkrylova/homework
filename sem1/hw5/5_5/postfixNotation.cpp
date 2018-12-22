@@ -80,5 +80,6 @@ char *shuntingYard(char *expression)
 	}
 
 	deleteCharStack(operatorStack);
+	delete[] endOfStack;
 	return resultedString;
 }
