@@ -10,7 +10,7 @@ String *createString()
 	return new String{ 0, nullptr };
 }
 
-void deleteString(String *&string)
+void deleteString(String *string)
 {
 	delete[] string->symbols;
 	delete string;
@@ -119,3 +119,4 @@ void printString(String *string)
 		cout << array[i];
 	}
 }
+

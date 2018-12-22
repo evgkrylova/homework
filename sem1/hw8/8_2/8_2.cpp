@@ -37,7 +37,9 @@ int main()
 
 	while (choice != 0)
 	{
-		String * secondString = createString();
+		String *secondString = createString();
+		String *result = createString();
+
 		switch (choice)
 		{
 		case 1:
@@ -51,24 +53,31 @@ int main()
 
 		case 3:
 			cout << "Clone: ";
-			printString(clone(string));
+			deleteString(result);
+			result = clone(string);
+			printString(result);
 			break;
 
 		case 4:
 			cout << "Enter the second string: ";
 			readString(secondString);
 			cout << "Concatination: ";
-			printString(concatenate(string, secondString));
+
+			deleteString(result);
+			result = concatenate(string, secondString);
+			printString(result);
 			break;
 
 		case 5:
 			cout << "Enter the second string: ";
 			readString(secondString);
 			cout << "Result of comparing: strings are ";
+
 			if (!areEqual(string, secondString))
 			{
 				cout << "not ";
 			}
+
 			cout << "the same.";
 			break;
 
@@ -80,15 +89,21 @@ int main()
 			cout << "Enter a number of the last symbol: ";
 			cin >> lastSymbol;
 			cout << "Substring: ";
-			printString(getSubstring(string, firstSymbol, lastSymbol));
+
+			deleteString(result);
+			result = getSubstring(string, firstSymbol, lastSymbol);
+			printString(result);
 			break;
 		}
 
 		cout << "\nThe process was successfully completed.\n\nYour next command: ";
 		cin >> choice;
+
 		deleteString(secondString);
+		deleteString(result);
 	}
 
 	deleteString(string);
 	return 0;
 }
+

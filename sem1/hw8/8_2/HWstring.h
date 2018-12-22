@@ -8,7 +8,7 @@ struct String
 
 String *createString();
 void readString(String *string);
-void deleteString(String *&string);
+void deleteString(String *string);
 
 String *clone(String *string);
 String *concatenate(String *firstString, String *secondString);
