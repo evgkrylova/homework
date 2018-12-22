@@ -34,13 +34,9 @@ int main()
 	Student **listOfStudents = new Student*[totalAmount];
 	List *toExpelling = createList();
 
-	Student *firstCleverStudent = new Student{ 1, nullptr };
-	Student *secondCleverStudent = new Student{ 2, nullptr };
-	Student *thirdCleverStudent = new Student{ 3, nullptr };
-
-	listOfStudents[0] = firstCleverStudent;
-	listOfStudents[1] = secondCleverStudent;
-	listOfStudents[2] = thirdCleverStudent;
+	listOfStudents[0] = new Student{ 1, nullptr };
+	listOfStudents[1] = new Student{ 2, nullptr };
+	listOfStudents[2] = new Student{ 3, nullptr };
 
 	for (int i = amountOfCleverStudents; i < totalAmount; i++)
 	{
@@ -85,13 +81,11 @@ int main()
 
 	for (int i = 0; i < totalAmount; i++)
 	{
-		listOfStudents[i] = nullptr;
 		delete listOfStudents[i];
 	}
+	delete listOfStudents;
+
 	deleteList(toExpelling);
-	delete firstCleverStudent;
-	delete secondCleverStudent;
-	delete thirdCleverStudent;
 	return 0;
 }
 
