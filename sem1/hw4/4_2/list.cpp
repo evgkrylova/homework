@@ -14,6 +14,8 @@ void deleteList(List *list)
 	while (current)
 	{
 		ListElement *nextElement = current->next;
+		delete current->name;
+		delete current->number;
 		delete current;
 		current = nextElement;
 	}
