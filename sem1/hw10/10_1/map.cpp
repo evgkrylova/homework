@@ -1,8 +1,25 @@
 #include <iostream>
 #include <fstream>
-#include "matrix.h"
+#include "map.h"
 
 using namespace std;
+
+Coordinates *createCoordinates(int x, int y)
+{
+	return new Coordinates{ x, y };
+}
+
+bool isCoordinatesCorrect(Map *map, Coordinates *point)
+{
+	int x = point->x;
+	int y = point->y;
+	return ((x >= 0) && (x < map->m) && (y >= 0) && (y < map->n));
+}
+
+bool isCoordinatesCorrect(Map *map, int x, int y)
+{
+	return ((x >= 0) && (x < map->m) && (y >= 0) && (y < map->n));
+}
 
 int **createEmptyIntMatrix(int n, int m)
 {
@@ -84,6 +101,7 @@ void deleteMap(Map *map)
 	deleteIntMatrix(map->distance, n);
 	deleteIntMatrix(map->previousInXAxis, n);
 	deleteIntMatrix(map->previousInYAxis, n);
+	deleteBoolMatrix(map->path, n);
 
 	delete map;
 }
@@ -111,6 +129,7 @@ Map *readMap(ifstream &fin, int n, int m)
 	map->distance = createEmptyIntMatrix(n, m);
 	map->previousInXAxis = createEmptyIntMatrix(n, m);
 	map->previousInYAxis = createEmptyIntMatrix(n, m);
+	map->path = createEmptyBoolMatrix(n, m);
 
 	return map;
 }
@@ -133,3 +152,42 @@ void printMap(Map *map)
 	}
 }
 
+void printPath(Map *map, Coordinates *start, Coordinates *destination)
+{
+	cout << "The path: " << endl;
+
+	for (int i = 0; i < map->n; i++)
+	{
+		for (int j = 0; j < map->m; j++)
+		{
+			if (map->path[i][j])
+			{
+				cout << "* ";
+			}
+			else if (i == start->y && j == start->x)
+			{
+				cout << "s ";
+			}
+			else if ((i == destination->y) && (j == destination->x))
+			{
+				cout << "d ";
+			}
+			else
+			{
+				cout << map->path[i][j] << ' ';
+			}
+		}
+		cout << endl;
+	}
+}
+
+bool areCoordinatesEqual(Coordinates *a, Coordinates *b)
+{
+	int x1 = a->x;
+	int y1 = a->y;
+
+	int x2 = b->x;
+	int y2 = b->y;
+
+	return ((x1 == x2) && (y1 == y2));
+}

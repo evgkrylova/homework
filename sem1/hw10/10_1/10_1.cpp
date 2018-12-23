@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "matrix.h"
+#include "map.h"
 #include "aStar.h"
 
 using namespace std;
@@ -16,7 +16,7 @@ int main()
 	Map *map = readMap(fin, n, m);
 
 	fin.close();
-	
+
 	int x = 0;
 	int y = 0;
 	cout << "Enter coordinates of the start point: ";
@@ -46,11 +46,13 @@ int main()
 	}
 
 	aStar(map, start, destination);
-	cout << endl;
+	cout << endl << "The map: ";
+
+	printMap(map);
 
 	deleteMap(map);
-	deleteCoordinates(start);
-	deleteCoordinates(destination);
+	delete start;
+	delete destination;
 
 	return 0;
 }

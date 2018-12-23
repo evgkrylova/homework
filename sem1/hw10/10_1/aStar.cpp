@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "matrix.h"
+#include "map.h"
 #include "aStar.h"
 
 using namespace std;
@@ -30,18 +30,6 @@ int heuristic(Coordinates *start, Coordinates *destination)
 int heuristic(int x, int y, Coordinates *destination)
 {
 	return absoluteValue(x - destination->x) + absoluteValue(y - destination->y);
-}
-
-bool isCoordinatesCorrect(Map *map, Coordinates *point)
-{
-	int x = point->x;
-	int y = point->y;
-	return ((x >= 0) && (x < map->n) && (y >= 0) && (y < map->m));
-}
-
-bool isCoordinatesCorrect(Map *map, int x, int y)
-{
-	return ((x >= 0) && (x < map->n) && (y >= 0) && (y < map->m));
 }
 
 void calculateNextStepDistance(Map *&map, Coordinates *start, Coordinates *destination)
@@ -110,17 +98,17 @@ void calculateWay(Map *map, Coordinates *&current, Coordinates *last, Coordinate
 
 void aStar(Map *map, Coordinates *start, Coordinates *destination)
 {
-	bool **isVisited = map->isVisited;
-	int **body = map->body;
-	int **distance = map->distance;
-	int **previousInXAxis = map->previousInXAxis;
-	int **previousInYAxis = map->previousInYAxis;
-
 	int x1 = start->x;
 	int y1 = start->y;
 
 	int x2 = destination->x;
 	int y2 = destination->y;
+
+	if (areCoordinatesEqual(start, destination))
+	{
+		cout << endl << "Same points were entered." << endl;
+		return;
+	}
 
 	int n = map->n;
 	int m = map->m;
@@ -150,10 +138,10 @@ void aStar(Map *map, Coordinates *start, Coordinates *destination)
 			}
 		}
 
-		if ((current->x == destination->x) && (current->y == destination->y))
+		if ((current->x == x2) && (current->y == y2))
 		{
 			isPathFound = true;
-		}			
+		}
 
 		else
 		{
@@ -167,22 +155,32 @@ void aStar(Map *map, Coordinates *start, Coordinates *destination)
 	}
 
 	if (!isPathFound)
-		cout << "There is no path on this map.\n";
+	{
+		cout << endl << "There is no path between these points.\n";
+		delete current;
+		return;
+	}
 	else
 	{
-		cout << "Length of path is " << map->distance[destination->y][destination->x]; 
+		cout << endl << "Length of the path: " << map->distance[y2][x2];
 	}
 
 	delete current;
-}
 
-Coordinates *createCoordinates(int x, int y)
-{
-	return new Coordinates{ x, y };
-}
+	cout << endl << endl;
+	int x = map->previousInXAxis[y2][x2];
+	int y = map->previousInYAxis[y2][x2];
+	int nextX = 0;
 
-void deleteCoordinates(Coordinates *coordinates)
-{
-	delete coordinates;
+	while ((y != y1) || (x != x1))
+	{
+		map->path[y][x] = true;
+		nextX = x;
+
+		x = map->previousInXAxis[y][x];
+		y = map->previousInYAxis[y][nextX];
+	}
+
+	printPath(map, start, destination);
 }
 
