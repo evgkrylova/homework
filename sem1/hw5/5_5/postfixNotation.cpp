@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "charStack.h"
 #include "doubleStack.h"
 
