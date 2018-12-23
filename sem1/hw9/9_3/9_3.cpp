@@ -14,7 +14,6 @@ int main()
 	fout.open("output.txt");
 
 	BinaryTree *tree = createBinaryTree(fin);
-
 	huffmanDecoding(tree, fin, fout);
 	deleteTree(tree);
 
@@ -22,3 +21,4 @@ int main()
 	fout.close();
 
 	return 0;
+}

@@ -239,243 +239,37 @@ bool isTreeEmpty(BinaryTree *tree)
 BinaryTreeNode *readTree(ifstream &fin)
 {
 	const int nullLength = 4;
-	char current = 0;
-	char null = 0;
-	char space = 0;
+	char current = '\0';
+	char null = '\0';
+	char space = '\0';
+	char closedBracket = '\0';
 
 	BinaryTreeNode *node = nullptr;
 
-	while (!fin.eof())
+	fin.get(current);
+
+	if ((current == '(') || ((current == ' ') && (fin.get() == '(')))
 	{
 		fin.get(current);
+		fin.get(space);
+		
+		BinaryTreeNode *left = readTree(fin);
+		BinaryTreeNode *right = readTree(fin);
+		node = createBinaryTreeNode(current, left, right);
 
-		if (current == '(')
+		fin.get(closedBracket);
+		return node;
+	}
+
+	if ((current != ')') && (current != ' '))
+	{
+		for (int i = 0; i < nullLength - 1; i++)
 		{
-			fin.get(current);
-			fin.get(space);
-
-			BinaryTreeNode *left = readTree(fin);
-			BinaryTreeNode *right = readTree(fin);
-			node = createBinaryTreeNode(current, left, right);
-
-			return node;
-		}
-
-		if ((current != ')') && (current != ' '))
-		{
-			for (int i = 0; i < nullLength; i++)
-			{
-				fin.get(null);
-			}
-			return nullptr;
-		}
-
-		continue;
-	}
-
-	return nullptr;
-}
-de->leftChild, symbol);
-	}
-
-	if (symbol > node->symbol)
-	{
-		return removeSymbolFromNode(node->rightChild, symbol);
-	}
-
-	balanceNode(node);
-}
-
-void removeSymbolFromTree(AVLTree *tree, char symbol)
-{
-	removeSymbolFromNode(tree->root, symbol);
-}
-
-bool isSymbolInTree(AVLTree *tree, char symbol)
-{
-	AVLTreeNode *currentNode = tree->root;
-
-	while ((currentNode) && (symbol != currentNode->symbol))
-	{
-		if (symbol < currentNode->symbol)
-		{
-			currentNode = currentNode->leftChild;
-			continue;
-		}
-		currentNode = currentNode->rightChild;
-	}
-
-	if (currentNode)
-	{
-		return true;
-	}
-	return false;
-}
-
-void printNodeInAscendingOrder(AVLTreeNode *node)
-{
-	if (!node)
-	{
-		return;
-	}
-
-	printNodeInAscendingOrder(node->leftChild);
-	cout << node->symbol << ' ';
-	printNodeInAscendingOrder(node->rightChild);
-}
-
-void printTreeInAscendingOrder(AVLTree *tree)
-{
-	printNodeInAscendingOrder(tree->root);
-	cout << endl;
-}
-
-void printNodeInDescendingOrder(AVLTreeNode *node)
-{
-	if (!node)
-	{
-		return;
-	}
-
-	printNodeInDescendingOrder(node->rightChild);
-	cout << node->symbol << ' ';
-	printNodeInDescendingOrder(node->leftChild);
-}
-
-void printTreeInDescendingOrder(AVLTree *tree)
-{
-	printNodeInDescendingOrder(tree->root);
-	cout << endl;
-}
-
-void printNodeInStorageOrder(AVLTreeNode *node, ofstream &fout)
-{
-	if (!node)
-	{
-		fout << "null";
-		return;
-	}
-
-	fout << '(' << node->symbol << ' ';
-	printNodeInStorageOrder(node->leftChild, fout);
-	fout << ' ';
-	printNodeInStorageOrder(node->rightChild, fout);
-	fout << ')';
-}
-
-void printTreeInStorageOrder(AVLTree *tree, ofstream &fout)
-{
-	printNodeInStorageOrder(tree->root, fout);
-	cout << endl;
-}
-
-bool isTreeEmpty(AVLTree *tree)
-{
-	return tree->root == nullptr;
-}
-
-char getSymbol(AVLTreeNode *node)
-{
-	return node->symbol;
-}
-
-void huffmanCodingForNode(AVLTreeNode *node, char *digits, char **symbols, int index)
-{
-	if (node->leftChild != nullptr)
-	{
-		digits[index] = '0';
-		huffmanCodingForNode(node->leftChild, digits, symbols, index + 1);
-	}
-	if (node->rightChild != nullptr)
-	{
-		digits[index] = '1';
-		huffmanCodingForNode(node->rightChild, digits, symbols, index + 1);
-	}
-	else
-	{
-		digits[index] = '\0';
-		for (int i = 0; i <= index; i++)
-		{
-			symbols[node->symbol][i] = digits[i];
+			fin.get(null);
 		}
 	}
-}
 
-void huffmanCoding(AVLTree *tree, char *digits, char **symbols)
-{
-	if (!tree->root)
-	{
-		return;
-	}
-
-	huffmanCodingForNode(tree->root, digits, symbols, 0);
-}
-
-AVLTreeNode *readTree(ifstream &fin)
-{
-	const int nullLength = 4;
-	char current = 0;
-	char null = 0;
-	char space = 0;
-
-	AVLTreeNode  *node = nullptr;
-
-	while (!fin.eof())
-	{
-		fin.get(current);
-
-		if (current == '(')
-		{
-			fin.get(current);
-			fin.get(space);
-
-			AVLTreeNode *left = readTree(fin);
-			AVLTreeNode *right = readTree(fin);
-			node = createAVLTreeNode(current, left, right);
-
-			return node;
-		}
-
-		if ((current != ')') && (current != ' '))
-		{
-			for (int i = 0; i < nullLength; i++)
-			{
-				fin.get(null);
-			}
-			return nullptr;
-		}
-
-		continue;
-	}
-
+	fin.get(closedBracket);
 	return nullptr;
 }
 
-void huffmanDecoding(AVLTree *tree, ifstream &fin, ofstream &fout)
-{
-	char current = 0;
-	while (!fin.eof())
-	{
-		AVLTreeNode *temp = tree->root;
-		while ((temp->leftChild) && (temp->rightChild))
-		{
-			fin.get(current);
-			if (fin.eof())
-			{
-				return;
-			}
-
-			if (current == '0')
-			{
-				temp = temp->leftChild;
-			}
-
-			if (current == '1')
-			{
-				temp = temp->rightChild;
-			}
-		}
-
-		fout << temp->symbol;
-	}
-}
