@@ -9,11 +9,7 @@ const int maxWordLength = 256;
 
 bool isLetter(char c)
 {
-	if ((c <= 'z' && c >= 'a') || (c <= 'Z' && c >= 'A'))
-	{
-		return true;
-	}
-	return false;
+	return ((c <= 'z' && c >= 'a') || (c <= 'Z' && c >= 'A'));
 }
 
 void readWord(ifstream &fin, HashTable *table)
