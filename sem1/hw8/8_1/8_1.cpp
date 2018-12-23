@@ -83,7 +83,7 @@ int main()
 	{
 		delete listOfStudents[i];
 	}
-	delete listOfStudents;
+	delete[] listOfStudents;
 
 	deleteList(toExpelling);
 	return 0;
