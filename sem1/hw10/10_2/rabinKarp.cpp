@@ -1,54 +1,98 @@
 #include <iostream>
 #include <istream>
 #include <string.h>
-#include "HWstring.h"
 #include "rabinKarp.h"
 
 using namespace std;
 
+const int standartStringSize = 256;
 const int mod = 1009;
 const int prime = 19;
 
-int getHash(String *string, int start, int end)
+int getHash(char *string, int stringLength)
 {
 	int result = 0;
-	for (int i = start; i < end; i++)
-		result = ((result * prime) % mod + (int)getChar(string, i)) % mod;
+	for (int i = 0; i < stringLength; i++)
+	{
+		result = ((result * prime) + string[i]) % mod;
+	}
 
 	return result;
 }
 
-void rabinKarp(String *string, String *substring, int *indexes)
+void updateHash(int &currentHash, char *string, int substringLength, int power, int i)
 {
-	if (substring->length > string->length)
+	currentHash = (((((currentHash - string[i] * power) % mod + mod) % mod) * prime) % mod + string[i + substringLength]) % mod;
+}
+
+bool areCharEqual(char *firstString, int firstLength, char *secondString, int secondLength, int startIndex)
+{
+	for (int i = 0; i < secondLength; i++)
 	{
+		if (firstString[i + startIndex] != secondString[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void printArray(int *array, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << ' ' << array[i];
+	}
+}
+
+void rabinKarp(char *string, char *substring)
+{
+	int stringLength = strlen(string);
+	int substringLength = strlen(substring);
+
+	if (stringLength < substringLength)
+	{
+		cout << "There is no entrances.";
 		return;
 	}
 
-	int start = 0;
-	int subHash = getHash(substring, 0, stringLength(substring));
-	int currentHash = getHash(string, 0, stringLength(substring));
+	int *entrances = new int[standartStringSize] {0};
+
+	int substringHash = getHash(substring, substringLength);
+	int currentHash = getHash(string, substringLength);
 
 	int power = 1;
-	for (int i = 1; i < stringLength(substring); i++)
+	for (int i = 1; i < substringLength; i++)
 	{
 		power = (power * prime) % mod;
 	}
 
-	int counter = 0;
-	for (int i = start; i <= stringLength(string) - stringLength(substring); i++)
+	int currentIndex = 0;
+
+	for (int i = 0; i < stringLength - substringLength + 1; i++)
 	{
-		if (currentHash == subHash)
+		if (currentHash == substringHash)
 		{
-			String *slice = getSubstring(string, i, i + stringLength(substring) - 1);
-			if (areEqual(substring, slice))
+			if (areCharEqual(string, stringLength, substring, substringLength, i))
 			{
-				indexes[counter] = i + 1;
-				counter++;
+				entrances[currentIndex++] = i;
 			}
-			deleteString(slice);
 		}
-		currentHash = (((((currentHash - (getChar(string, i)) * power) % mod + mod) % mod) * prime) % mod + getChar(string, i + stringLength(substring))) % mod;
+
+		updateHash(currentHash, string, substringLength, power, i);
 	}
+
+	if (currentIndex)
+	{
+		cout << "Substrings first indexes:";
+		printArray(entrances, currentIndex);
+	}
+	else
+	{
+		cout << "There is no entrances.";
+	}
+
+	delete[] entrances;
 }
 

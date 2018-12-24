@@ -1,45 +1,25 @@
 #include <iostream>
-#include "HWstring.h"
+#include <string.h>
 #include "rabinKarp.h"
 
 using namespace std;
 
-const int maximalSize = 100000;
+const int standartStringSize = 256;
 
 int main()
 {
-	char word[maximalSize];
+	char *string = new char[standartStringSize];
 	cout << "Enter a string: ";
-	cin >> word;
-	String *string = createString(word);
+	cin >> string;
 
+	char *substring = new char[standartStringSize];
 	cout << "Enter a substring: ";
-	cin >> word;
-	String *subString = createString(word);
+	cin >> substring;
 
-	int indexes[maximalSize];
-	for (int i = 0; i < maximalSize; i++)
-	{
-		indexes[i] = -1;
-	}
+	rabinKarp(string, substring);
 
-	rabinKarp(string, subString, indexes);
-
-	int counter = 0;
-	if (indexes[counter] == -1)
-	{
-		cout << "There is no entrances.";
-		return 0;
-	}
-
-	cout << "Substrings first indexes: ";
-	while (indexes[counter] != -1)
-	{
-		cout << indexes[counter] << ' ';
-		counter++;
-	}
-	deleteString(string);
-	deleteString(subString);
+	delete[] string;
+	delete[] substring;
 
 	return 0;
 }
