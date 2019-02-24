@@ -67,12 +67,3 @@ public class Stack<Type> {
         return head.value;
     }
 }
-
-
-
-
-
-
-
-
-
