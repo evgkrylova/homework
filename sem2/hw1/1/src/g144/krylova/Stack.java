@@ -1,5 +1,8 @@
 package g144.krylova;
 
+/**
+ * A class realizing functions of LIFO stack.
+ */
 public class Stack<Type> {
 
     private class StackElement {
