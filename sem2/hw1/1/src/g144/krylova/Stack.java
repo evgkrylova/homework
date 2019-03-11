@@ -5,20 +5,6 @@ package g144.krylova;
  */
 public class Stack<Type> {
 
-    private class StackElement {
-        Type value;
-        StackElement next;
-
-        StackElement(Type value, StackElement next) {
-            this.value = value;
-            this.next = next;
-        }
-
-        Type getValue() {
-            return this.value;
-        }
-    }
-
     private StackElement head = null;
     private int length = 0;
 
@@ -65,5 +51,19 @@ public class Stack<Type> {
             return null;
         }
         return head.value;
+    }
+
+    private class StackElement {
+        private Type value;
+        private StackElement next;
+
+        private StackElement(Type value, StackElement next) {
+            this.value = value;
+            this.next = next;
+        }
+
+        private Type getValue() {
+            return this.value;
+        }
     }
 }
