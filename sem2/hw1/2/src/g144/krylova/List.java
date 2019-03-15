@@ -5,29 +5,6 @@ package g144.krylova;
  */
 public class List<Type> {
 
-    private class ListElement {
-        Type value;
-        ListElement next;
-        ListElement tail;
-
-        ListElement(Type value, ListElement next) {
-            this.value = value;
-            this.next = next;
-        }
-
-        Type getValue() {
-            return this.value;
-        }
-
-        ListElement getNext(){
-            return next;
-        }
-
-        void setNext(ListElement next){
-            this.next = next;
-        }
-    }
-
     private ListElement head = null;
     private int length = 0;
 
@@ -62,11 +39,9 @@ public class List<Type> {
 
         ListElement current = head;
         for (int i = 0; i < n; i++) {
-            current = current.getNext();
+            current = current.next;
         }
-
-        ListElement newElement = new ListElement(value, current);
-        current.setNext(newElement);
+        current.next = new ListElement(value);
         length++;
     }
 
@@ -120,6 +95,21 @@ public class List<Type> {
         System.out.print("List: ");
         for (int i = 0; i < getLength(); i++){
             System.out.print(getElement(i) + " ");
+        }
+    }
+
+    private class ListElement {
+        private Type value;
+        private ListElement next;
+        private ListElement tail;
+
+        private ListElement(Type value, ListElement next) {
+            this.value = value;
+            this.next = next;
+        }
+
+        private ListElement(Type value) {
+            this.value = value;
         }
     }
 }
