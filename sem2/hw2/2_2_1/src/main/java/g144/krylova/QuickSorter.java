@@ -10,6 +10,10 @@ public class QuickSorter implements Sorter {
     }
 
     private void quickSort(int[] array, int left, int right) {
+        if (right < 0) {
+            return;
+        }
+
         int leftHold = left;
         int rightHold = right;
         int comparing = array[left];
