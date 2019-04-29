@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         try {
             int[][] matrix = MatrixReader.fillMatrix(input);
@@ -29,7 +29,7 @@ public class Main {
         }
 
         catch (IncorrectSizeException e){
-            e.message();
+            System.out.println("Incorrect size of matrix.");
         }
 
         catch (FileNotFoundException e){

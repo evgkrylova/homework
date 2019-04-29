@@ -25,7 +25,7 @@ abstract class SpiralConverter implements SpiralPrinter{
         StringBuffer resultString = new StringBuffer();
 
         if (matrix.length % 2 == 0 || matrix.length < 1) {
-            throw new IncorrectSizeException();
+            throw new IncorrectSizeException("Incorrect size of matrix.");
         }
 
         int horizontalIndex = matrix.length / 2;
