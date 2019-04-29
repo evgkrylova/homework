@@ -10,42 +10,47 @@ public class Converter {
      * @return the string that is the postfix form of the expression.
      * @throws EmptyStackException if the method top or pop was used in relation to the empty stack.
      */
-    public static String getPostfixNotation(String expression) throws EmptyStackException{
+    public static String getPostfixNotation(String expression) throws IncorrectInputException{
         Stack<Character> operatorStack = new ListStack<>();
         int length = expression.length();
         StringBuffer resultedString = new StringBuffer();
         resultedString.setLength(lengthWithoutBrackets(expression));
         int index = 0;
 
-        for (int i = 0; i < length; i++) {
-            Character currentElement = expression.charAt(i);
+        try{
+            for (int i = 0; i < length; i++) {
+                Character currentElement = expression.charAt(i);
 
-            if (Character.isDigit(currentElement)) {
-                resultedString.setCharAt(index++, currentElement);
-            }
-
-            else if (currentElement == '(') {
-                operatorStack.push(currentElement);
-            }
-
-            else if (currentElement == ')') {
-                while (operatorStack.top() != '(') {
-                    resultedString.setCharAt(index++, operatorStack.pop());
+                if (Character.isDigit(currentElement)) {
+                    resultedString.setCharAt(index++, currentElement);
                 }
-                operatorStack.pop();
+
+                else if (currentElement == '(') {
+                    operatorStack.push(currentElement);
+                }
+
+                else if (currentElement == ')') {
+                    while (operatorStack.top() != '(') {
+                        resultedString.setCharAt(index++, operatorStack.pop());
+                    }
+                    operatorStack.pop();
+                }
+
+                else if (isBinaryOperator(currentElement)) {
+                    while ((operatorStack.getLength() > 0) && (isBinaryOperator(operatorStack.top())) && (priority(currentElement) <= priority(operatorStack.top()))) {
+                        resultedString.setCharAt(index++, operatorStack.pop());
+                    }
+                    operatorStack.push(currentElement);
+                }
             }
 
-            else if (isBinaryOperator(currentElement)) {
-                while ((operatorStack.getLength() > 0) && (isBinaryOperator(operatorStack.top())) && (priority(currentElement) <= priority(operatorStack.top()))) {
-                    resultedString.setCharAt(index++, operatorStack.pop());
-                }
-                operatorStack.push(currentElement);
+            int endLength = operatorStack.getLength();
+            for (int i = 0; i < endLength; i++) {
+                resultedString.setCharAt(index + i, operatorStack.pop());
             }
         }
-
-        int endLength = operatorStack.getLength();
-        for (int i = 0; i < endLength; i++) {
-            resultedString.setCharAt(index + i, operatorStack.pop());
+        catch (EmptyStackException e) {
+            throw new IncorrectInputException();
         }
 
         return resultedString.toString();

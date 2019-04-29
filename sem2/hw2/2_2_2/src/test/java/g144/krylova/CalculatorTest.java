@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     @Test
-    void calculatorTest() throws EmptyStackException{
+    void calculatorTest() throws IncorrectInputException{
         String input = "58+2*42/-";
         Float correctAnswer = (float)(24);
         Float answer = Calculator.calculate(input);

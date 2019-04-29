@@ -45,7 +45,7 @@ public class ArrayStack<ElementType> implements Stack<ElementType> {
     @Override
     public ElementType pop() throws EmptyStackException {
         if (stackLength == 0){
-            throw new EmptyStackException();
+            throw new EmptyStackException("Stack is empty.");
         }
         ElementType topElement = stack[stackLength - 1];
         stack[stackLength - 1] = null;
@@ -59,7 +59,7 @@ public class ArrayStack<ElementType> implements Stack<ElementType> {
     @Override
     public ElementType top() throws EmptyStackException {
         if (stackLength == 0){
-            throw new EmptyStackException();
+            throw new EmptyStackException("Stack is empty.");
         }
         return stack[stackLength - 1];
     }

@@ -23,7 +23,7 @@ public class ListStack<ElementType> implements Stack<ElementType> {
     @Override
     public ElementType pop() throws EmptyStackException {
         if (length == 0) {
-            throw new EmptyStackException();
+            throw new EmptyStackException("Stack is empty.");
         }
         ElementType topElement = top.value;
         top = top.next;
@@ -37,7 +37,7 @@ public class ListStack<ElementType> implements Stack<ElementType> {
     @Override
     public ElementType top() throws EmptyStackException {
         if (length == 0){
-            throw new EmptyStackException();
+            throw new EmptyStackException("Stack is empty.");
         }
         return top.value;
     }

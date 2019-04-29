@@ -9,9 +9,9 @@ public class Calculator {
      * Method calculating a postfix expression.
      * @param expression is expression that should be converted to the postfix form.
      * @return the result of a calculation.
-     * @throws EmptyStackException if the method top or pop was used in relation to the empty stack.
+     * @throws IncorrectInputException if the method top or pop was used in relation to the empty stack.
      */
-    public static Float calculate(String expression) throws EmptyStackException{
+    public static Float calculate(String expression) throws IncorrectInputException{
         ListStack<Float> stack = new ListStack<>();
         int length = expression.length();
 
@@ -23,13 +23,21 @@ public class Calculator {
                 stack.push(addingElement);
             }
             else if (isBinaryOperator(currentElement)) {
-                Float secondOperand = stack.pop();
-                Float firstOperand = stack.pop();
-                stack.push(calculateBasicOperations(firstOperand, secondOperand, currentElement));
+                try {
+                    Float secondOperand = stack.pop();
+                    Float firstOperand = stack.pop();
+                    stack.push(calculateBasicOperations(firstOperand, secondOperand, currentElement));
+                } catch (EmptyStackException e) {
+                    throw new IncorrectInputException();
+                }
             }
         }
 
-        return stack.top();
+        try {
+            return stack.pop();
+        } catch (EmptyStackException e) {
+            throw new IncorrectInputException();
+        }
     }
 
     /**
