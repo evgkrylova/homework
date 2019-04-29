@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="g144.krylova.2_5_1_.main" target="1.8" />
+      <module name="g144.krylova.2_5_1_.test" target="1.8" />
+      <module name="group144.2_5_1_.main" target="11" />
+      <module name="group144.2_5_1_.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
