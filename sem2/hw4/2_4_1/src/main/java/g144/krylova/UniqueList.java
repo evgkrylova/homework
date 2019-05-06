@@ -11,8 +11,7 @@ public class UniqueList<Type> extends List<Type>{
     public void addElement(Type value) throws DuplicateElementException {
         if (isElementInList(value)){
             throw new DuplicateElementException();
-        }
-        else{
+        } else {
             super.addElement(value);
         }
     }
@@ -24,8 +23,7 @@ public class UniqueList<Type> extends List<Type>{
     public void addElement(Type value, int n) throws DuplicateElementException {
         if (isElementInList(value)){
             throw new DuplicateElementException();
-        }
-        else{
+        } else {
             super.addElement(value, n);
         }
     }

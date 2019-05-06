@@ -8,7 +8,7 @@ class UniqueListTest {
 
     @Test
     void addDuplicateElementTest() throws DuplicateElementException {
-        List<Integer> list = new UniqueElementsList<>();
+        List<Integer> list = new UniqueList<>();
         list.addElement(1);
         list.addElement(2);
         list.addElement(3);
@@ -17,7 +17,7 @@ class UniqueListTest {
 
     @Test
     void addElementTest() throws DuplicateElementException {
-        List<Integer> list = new UniqueElementsList<>();
+        List<Integer> list = new UniqueList<>();
         list.addElement(1);
         list.addElement(2);
         list.addElement(3);

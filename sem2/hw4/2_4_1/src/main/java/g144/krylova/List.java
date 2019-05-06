@@ -11,6 +11,7 @@ public class List<Type> {
     /**
      * Method putting an element to the head.
      * @param value is value to add.
+     * @throws DuplicateElementException if the adding value is already in table.
      */
     public void addElement(Type value) throws DuplicateElementException {
         head = new ListElement(value, head);
@@ -21,6 +22,7 @@ public class List<Type> {
      * Method putting an element to the N-th position.
      * @param value is value to add.
      * @param n is number of adding element index.
+     * @throws DuplicateElementException if the adding value is already in table.
      */
     public void addElement(Type value, int n) throws DuplicateElementException {
         if (n > length)
