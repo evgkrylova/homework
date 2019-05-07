@@ -6,7 +6,7 @@ package g144.krylova;
 public class ExpressionTree {
     private ExpressionTreeNode root;
 
-    ExpressionTree(String expression) throws IncorrectInputException {
+    public ExpressionTree(String expression) throws IncorrectInputException {
         IndexBoxer index = new IndexBoxer();
         if (Character.isDigit(expression.charAt(index.getIndex()))) {
             root = new OperandNode(expression, index);

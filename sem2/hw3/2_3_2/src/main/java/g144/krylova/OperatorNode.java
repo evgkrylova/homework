@@ -8,12 +8,12 @@ public class OperatorNode implements ExpressionTreeNode {
     private ExpressionTreeNode rightChild;
     private char operator;
 
-    OperatorNode(String expression, IndexBoxer index) throws IncorrectInputException {
+    public OperatorNode(String expression, IndexBoxer index) throws IncorrectInputException {
         skip(expression, index);
         char currentSymbol = expression.charAt(index.getIndex());
 
         if (currentSymbol != '+' && currentSymbol != '-' && currentSymbol != '*' && currentSymbol != '/'){
-            throw new IncorrectInputException();
+            throw new IncorrectInputException("Expression is incorrect.");
         }
         operator = currentSymbol;
 

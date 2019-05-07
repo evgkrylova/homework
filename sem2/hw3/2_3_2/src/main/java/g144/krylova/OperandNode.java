@@ -6,7 +6,7 @@ package g144.krylova;
 public class OperandNode implements ExpressionTreeNode {
     private int value;
 
-    OperandNode(String expression, IndexBoxer index) throws IncorrectInputException {
+    public OperandNode(String expression, IndexBoxer index) throws IncorrectInputException {
         try {
             char currentSymbol = expression.charAt(index.getIndex());
 
@@ -29,7 +29,7 @@ public class OperandNode implements ExpressionTreeNode {
             value = Integer.parseInt(currentNumber.toString());
 
         } catch (NumberFormatException e){
-            throw new IncorrectInputException();
+            throw new IncorrectInputException("Expression is incorrect.");
         }
     }
 
