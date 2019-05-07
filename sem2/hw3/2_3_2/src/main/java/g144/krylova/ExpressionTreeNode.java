@@ -6,6 +6,7 @@ package g144.krylova;
 public interface ExpressionTreeNode {
     /**
      * Method calculating the node.
+     * @throws IncorrectInputException if the input expression is impossible to calculate.
      */
     int calculateNode() throws IncorrectInputException;
 
