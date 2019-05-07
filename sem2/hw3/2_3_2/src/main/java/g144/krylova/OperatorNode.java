@@ -69,8 +69,8 @@ public class OperatorNode implements ExpressionTreeNode {
 
     /**
      * Method skipping brackets and spaces in the expression.
-     * @param expression
-     * @param index
+     * @param expression is the prefix expression which is calculating.
+     * @param index is reading now symbol's index.
      */
     private void skip(String expression, IndexBoxer index){
         char currentSymbol = expression.charAt(index.getIndex());

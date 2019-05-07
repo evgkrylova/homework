@@ -17,6 +17,7 @@ public class ExpressionTree {
 
     /**
      * Method calculating the expression from the tree.
+     * @throws IncorrectInputException if the input expression is impossible to calculate.
      */
     public int calculate() throws IncorrectInputException {
         return root.calculateNode();
