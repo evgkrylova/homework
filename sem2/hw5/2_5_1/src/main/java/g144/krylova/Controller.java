@@ -7,19 +7,12 @@ import javafx.scene.control.*;
 
 public class Controller {
 
-    /** create slider */
     @FXML
     Slider slider = new Slider();
 
-    /** created progressBar */
     @FXML
     ProgressBar progressBar = new ProgressBar();
 
-    /**
-     * initialize method
-     *
-     * progress bar change, when slider value change
-     */
     public void initialize() {
         slider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
