@@ -23,4 +23,4 @@ javafx {
     version = '12'
 }
 
-mainClassName = 'g144.krylova.Main'
+mainClassName = 'g144.krylova.Main' 
