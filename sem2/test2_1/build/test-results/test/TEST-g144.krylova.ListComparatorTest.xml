@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="g144.krylova.ListComparatorTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-05-10T14:10:08" hostname="evgkrylova" time="0.066">
-  <properties/>
-  <testcase name="compareListsEqualTest()" classname="g144.krylova.ListComparatorTest" time="0.059"/>
-  <testcase name="compareListsSecondTest()" classname="g144.krylova.ListComparatorTest" time="0.001"/>
-  <testcase name="compareListsFirstTest()" classname="g144.krylova.ListComparatorTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
