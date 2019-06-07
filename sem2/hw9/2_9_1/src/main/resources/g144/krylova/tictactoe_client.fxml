@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="400" minWidth="300" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="g144.krylova.ClientController">
+    <children>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints maxWidth="Infinity" minWidth="100.0" prefWidth="100.0" halignment="CENTER" hgrow="ALWAYS" />
+                <ColumnConstraints maxWidth="Infinity" minWidth="100.0" prefWidth="100.0" halignment="CENTER" hgrow="ALWAYS" />
+                <ColumnConstraints maxWidth="Infinity" minWidth="100.0" prefWidth="100.0" halignment="CENTER" hgrow="ALWAYS" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" valignment="CENTER" vgrow="ALWAYS" />
+            </rowConstraints>
+            <children>
+                <Button fx:id="button_0" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="0" >
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_1" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0" >
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_2" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="0" >
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_3" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="1" >
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_4" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_5" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_6" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_7" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button_8" mnemonicParsing="false" maxWidth="Infinity" minWidth="100.0" maxHeight="Infinity" minHeight="100.0" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Button>
+            </children>
+        </GridPane>
+        <Label fx:id="message" maxWidth="Infinity" minWidth="300.0" maxHeight="Infinity" minHeight="50.0" prefHeight="50.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="start" mnemonicParsing="false" maxWidth="Infinity" minWidth="300.0" maxHeight="Infinity" minHeight="50.0" prefHeight="50.0" prefWidth="300.0" text="Start" VBox.vgrow="ALWAYS">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Button>
+    </children>
+</VBox>
