@@ -8,17 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     @Test
-    void calculateSumTest() {
+    void calculateSumTest() throws WrongOperatorException {
         assertEquals(6, calculate(2, 4, '+'));
     }
 
     @Test
-    void calculateDividingTest() {
+    void calculateDividingTest() throws WrongOperatorException {
         assertEquals(4, calculate(8, 2, '/'));
     }
 
     @Test
-    void calculateMultiplicationTest() {
+    void calculateMultiplicationTest() throws WrongOperatorException {
         assertEquals(8, calculate(2, 4, '*'));
     }
 }

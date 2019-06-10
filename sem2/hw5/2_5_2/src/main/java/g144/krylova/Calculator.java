@@ -11,8 +11,9 @@ public class Calculator {
      * @param operation is operation to calculate.
      * @return result of calculating.
      * @throws ArithmeticException if the divider is zero.
+     * @throws WrongOperatorException if the divider is zero.
      */
-    public static double calculate(double a, double b, char operation) throws ArithmeticException{
+    public static double calculate(double a, double b, char operation) throws ArithmeticException, WrongOperatorException{
         switch (operation){
             case '+':{
                 return a + b;
@@ -30,7 +31,7 @@ public class Calculator {
                 return a / b;
             }
             default:{
-                return 0;
+                throw new WrongOperatorException("There is no such operator.");
             }
         }
     }

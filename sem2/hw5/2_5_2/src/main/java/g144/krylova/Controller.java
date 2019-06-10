@@ -18,7 +18,7 @@ public class Controller {
      * Method initializing elements.
      */
     @FXML
-    public void initialize(){
+    public void initialize() {
         actionBox.getItems().addAll("+", "-", "*", "/");
         actionBox.getSelectionModel().select(0);
         firstSpinner.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(Double.MIN_VALUE - Double.MAX_VALUE, Double.MAX_VALUE, 0.0, 1.0));
@@ -28,8 +28,6 @@ public class Controller {
         firstSpinner.valueProperty().addListener(valueListener);
         secondSpinner.valueProperty().addListener(valueListener);
         actionBox.valueProperty().addListener(actionListener);
-
-
         calculate();
     }
 
@@ -43,8 +41,12 @@ public class Controller {
             char action = actionBox.getValue().charAt(0);
             double result = Calculator.calculate(firstValue, secondValue, action);
             resultField.setText(Double.toString(result));
-        }  catch (ArithmeticException e){
+        }
+        catch (ArithmeticException e) {
             resultField.setText("error");
+        }
+        catch (WrongOperatorException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
