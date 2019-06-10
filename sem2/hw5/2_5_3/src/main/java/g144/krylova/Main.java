@@ -12,7 +12,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("calculator.fxml"));
         primaryStage.setTitle("Calculator");
-        primaryStage.setScene(new Scene(root, 180, 200));
+        primaryStage.setScene(new Scene(root, 252, 280));
+        primaryStage.setMinHeight(280);
+        primaryStage.setMinWidth(252);
         primaryStage.setResizable(true);
         primaryStage.show();
     }
