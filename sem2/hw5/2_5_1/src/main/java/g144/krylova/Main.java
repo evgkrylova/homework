@@ -13,6 +13,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sliderAndBar.fxml"));
         primaryStage.setTitle("Slider and progress bar");
         primaryStage.setScene(new Scene(root, 300, 100));
+        primaryStage.setMinHeight(100);
+        primaryStage.setMinWidth(300);
         primaryStage.setResizable(true);
         primaryStage.show();
     }
