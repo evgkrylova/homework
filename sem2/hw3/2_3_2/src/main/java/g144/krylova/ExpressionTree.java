@@ -12,6 +12,21 @@ public class ExpressionTree {
         root = null;
     }
 
+    /**
+     * Method calculating the expression with the tree.
+     * @throws IncorrectInputException if the input expression is impossible to calculate.
+     */
+    public int calculate(String expression) throws IncorrectInputException {
+        AtomicInteger index = new AtomicInteger(0);
+        clear();
+        if (Character.isDigit(expression.charAt(index.get()))) {
+            root = new OperandNode(expression, index);
+        } else {
+            root = new OperatorNode(expression, index);
+        }
+        return root.calculateNode();
+    }
+
     public ExpressionTree(String expression) throws IncorrectInputException {
         AtomicInteger index = new AtomicInteger(0);
         if (Character.isDigit(expression.charAt(index.get()))) {
@@ -34,5 +49,12 @@ public class ExpressionTree {
      */
     public void print() {
         root.printNode();
+    }
+
+    /**
+     * Method clearing the tree.
+     */
+    public void clear() {
+        this.root = null;
     }
 }
