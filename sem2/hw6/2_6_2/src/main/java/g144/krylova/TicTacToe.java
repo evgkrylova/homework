@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class TicTacToe {
     private String nextSymbol = "X";
     private final int SIZE = 3;
-    private String[] table = new String[SIZE * SIZE];
+    protected String[] table = new String[SIZE * SIZE];
 
-    TicTacToe() {
+    public TicTacToe() {
         for (int i = 0; i < SIZE * SIZE; i++) {
             this.table[i] = "";
         }
@@ -86,7 +86,7 @@ public class TicTacToe {
             button.setText("");
         }
         for (int i = 0; i < SIZE * SIZE; i++) {
-            this.table[i] = null;
+            this.table[i] = "";
         }
     }
 }

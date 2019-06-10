@@ -8,16 +8,35 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 
 public class Controller {
-    @FXML Label message;
-    @FXML Button button_0;
-    @FXML Button button_1;
-    @FXML Button button_2;
-    @FXML Button button_3;
-    @FXML Button button_4;
-    @FXML Button button_5;
-    @FXML Button button_6;
-    @FXML Button button_7;
-    @FXML Button button_8;
+    @FXML
+    private Label message;
+
+    @FXML
+    private Button button_0;
+
+    @FXML
+    private Button button_1;
+
+    @FXML
+    private Button button_2;
+
+    @FXML
+    private Button button_3;
+
+    @FXML
+    private Button button_4;
+
+    @FXML
+    private Button button_5;
+
+    @FXML
+    private Button button_6;
+
+    @FXML
+    private Button button_7;
+
+    @FXML
+    private Button button_8;
 
     @FXML
     public void initialize() {
@@ -39,8 +58,8 @@ public class Controller {
         }
     }
 
-    ArrayList<Button> buttons = new ArrayList<>();
-    TicTacToe game = new TicTacToe();
+    private ArrayList<Button> buttons = new ArrayList<>();
+    private TicTacToe game = new TicTacToe();
 
     private final String MOVE_X = "Move of X-player";
     private final String MOVE_O = "Move of O-player";

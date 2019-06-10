@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("tictactoe.fxml"));
         primaryStage.setTitle("tic-tac-toe");
-        primaryStage.setScene(new Scene(root, 300, 400));
+        primaryStage.setScene(new Scene(root, 330, 450));
         primaryStage.setMinHeight(450);
         primaryStage.setMinWidth(330);
         primaryStage.setResizable(true);
