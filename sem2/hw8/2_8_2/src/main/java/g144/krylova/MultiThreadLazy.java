@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class MultiThreadLazy<T> implements Lazy<T> {
 
-    private volatile T value = null;
+    private T value = null;
     private volatile Supplier<T> expression;
 
     /**
