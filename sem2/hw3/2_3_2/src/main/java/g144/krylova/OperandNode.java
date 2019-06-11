@@ -8,6 +8,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class OperandNode implements ExpressionTreeNode {
     private int value;
 
+    public OperandNode(int operand) {
+        value = operand;
+    }
+
     public OperandNode(String expression, AtomicInteger index) throws IncorrectInputException {
         try {
             char currentSymbol = expression.charAt(index.get());

@@ -8,8 +8,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ExpressionTree {
     private ExpressionTreeNode root;
 
-    public ExpressionTree() {
-        root = null;
+    public ExpressionTree(ExpressionTreeNode root) {
+        this.root = root;
     }
 
     /**

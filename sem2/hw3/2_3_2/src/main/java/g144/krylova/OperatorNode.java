@@ -10,6 +10,24 @@ public class OperatorNode implements ExpressionTreeNode {
     private ExpressionTreeNode rightChild;
     private char operator;
 
+    public OperatorNode(char operator) {
+        this.operator = operator;
+    }
+
+    public OperatorNode(ExpressionTreeNode leftChild, ExpressionTreeNode rightChild, char operation) {
+        this.operator = operation;
+        this.leftChild = leftChild;
+        this.rightChild = rightChild;
+    }
+
+    public void setLeftChild(ExpressionTreeNode leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public void setRightChild(ExpressionTreeNode rightChild) {
+        this.rightChild = rightChild;
+    }
+
     public OperatorNode(String expression, AtomicInteger index) throws IncorrectInputException {
         skip(expression, index);
         char currentSymbol = expression.charAt(index.get());

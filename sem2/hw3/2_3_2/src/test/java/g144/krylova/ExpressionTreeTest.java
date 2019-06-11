@@ -25,7 +25,12 @@ class ExpressionTreeTest {
 
     @Test
     void emptyTreeCalculateTest() throws IncorrectInputException{
-        ExpressionTree tree = new ExpressionTree();
-        assertEquals(-4, tree.calculate("- - 4 3 / 5 1"));
+        OperatorNode root = new OperatorNode('*');
+        OperandNode left = new OperandNode(3);
+        OperandNode right = new OperandNode(2);
+        root.setLeftChild(left);
+        root.setRightChild(right);
+        ExpressionTree tree = new ExpressionTree(root);
+        assertEquals(6, tree.calculate());
     }
 }
