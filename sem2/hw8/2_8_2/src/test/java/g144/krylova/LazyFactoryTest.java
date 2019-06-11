@@ -46,10 +46,11 @@ class LazyFactoryTest {
 
     @Test
     void multiThreadNullTest() {
-        Supplier<Integer> expression = () -> null;
-        Lazy<Integer> lazyObject = LazyFactory.createMultiThreadLazy(expression);
-        assertNull(lazyObject.get());
-        assertNull(lazyObject.get());
-        assertNull(lazyObject.get());
+        Lazy<Integer> lazy = LazyFactory.createMultiTreadLazy(() -> null);
+        assertNull(lazy.get());
+        lazy.get();
+        lazy.get();
+        assertNull(lazy.get());
+        assertNull(lazy.get());
     }
 }
