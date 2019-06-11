@@ -123,8 +123,8 @@ public class Controller {
         blockButtons(operators);
 
         try {
-            Double value = calculator.calculate(currentValue.getText());
-            currentValue.setText(value.toString());
+            double value = calculator.calculate(currentValue.getText());
+            currentValue.setText(String.valueOf(value));
             expression.setText(expression.getText() + " " + getButtonString(event) + " ");
         } catch (ArithmeticException e) {
             currentValue.setText("Error");
