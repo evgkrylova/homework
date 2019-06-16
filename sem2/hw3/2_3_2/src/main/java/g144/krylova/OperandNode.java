@@ -1,26 +1,28 @@
 package g144.krylova;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Class containing methods for working with node with operand symbol.
  */
 public class OperandNode implements ExpressionTreeNode {
     private int value;
 
-    public OperandNode(String expression, IndexBoxer index) throws IncorrectInputException {
+    public OperandNode(String expression, AtomicInteger index) throws IncorrectInputException {
         try {
-            char currentSymbol = expression.charAt(index.getIndex());
+            char currentSymbol = expression.charAt(index.get());
 
             if (currentSymbol == ')' || currentSymbol == ' ' || currentSymbol == '(') {
-                index.setIndex(index.getIndex() + 1);
-                currentSymbol = expression.charAt(index.getIndex());
+                index.set(index.get() + 1);
+                currentSymbol = expression.charAt(index.get());
             }
 
             StringBuffer currentNumber = new StringBuffer();
             while ((Character.isDigit(currentSymbol) || currentSymbol == '-')){
                 currentNumber.append(currentSymbol);
-                index.setIndex(index.getIndex() + 1);
-                if ((index.getIndex() < expression.length())){
-                    currentSymbol = expression.charAt(index.getIndex());
+                index.set(index.get() + 1);
+                if ((index.get() < expression.length())){
+                    currentSymbol = expression.charAt(index.get());
                 } else{
                     break;
                 }

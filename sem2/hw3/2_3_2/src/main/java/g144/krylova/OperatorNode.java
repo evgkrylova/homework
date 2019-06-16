@@ -1,5 +1,7 @@
 package g144.krylova;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Class containing methods for working with node with operator symbol.
  */
@@ -8,18 +10,18 @@ public class OperatorNode implements ExpressionTreeNode {
     private ExpressionTreeNode rightChild;
     private char operator;
 
-    public OperatorNode(String expression, IndexBoxer index) throws IncorrectInputException {
+    public OperatorNode(String expression, AtomicInteger index) throws IncorrectInputException {
         skip(expression, index);
-        char currentSymbol = expression.charAt(index.getIndex());
+        char currentSymbol = expression.charAt(index.get());
 
         if (currentSymbol != '+' && currentSymbol != '-' && currentSymbol != '*' && currentSymbol != '/'){
             throw new IncorrectInputException("Expression is incorrect.");
         }
         operator = currentSymbol;
 
-        index.setIndex(index.getIndex() + 1);
+        index.set(index.get() + 1);
         skip(expression, index);
-        currentSymbol = expression.charAt(index.getIndex());
+        currentSymbol = expression.charAt(index.get());
 
         if (Character.isDigit(currentSymbol)) {
             leftChild = new OperandNode(expression, index);
@@ -28,7 +30,7 @@ public class OperatorNode implements ExpressionTreeNode {
         }
 
         skip(expression, index);
-        currentSymbol = expression.charAt(index.getIndex());
+        currentSymbol = expression.charAt(index.get());
         if (Character.isDigit(currentSymbol)) {
             rightChild = new OperandNode(expression, index);
         } else {
@@ -72,11 +74,11 @@ public class OperatorNode implements ExpressionTreeNode {
      * @param expression is the prefix expression which is calculating.
      * @param index is reading now symbol's index.
      */
-    private void skip(String expression, IndexBoxer index){
-        char currentSymbol = expression.charAt(index.getIndex());
+    private void skip(String expression, AtomicInteger index){
+        char currentSymbol = expression.charAt(index.get());
         while (currentSymbol == ')' || currentSymbol == ' ' || currentSymbol == '(') {
-            index.setIndex(index.getIndex() + 1);
-            currentSymbol = expression.charAt(index.getIndex());
+            index.set(index.get() + 1);
+            currentSymbol = expression.charAt(index.get());
         }
     }
 }
