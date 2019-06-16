@@ -11,5 +11,6 @@ public class FilePrinter extends SpiralConverter{
     public void printSpiral(int[][] array) throws IOException, IncorrectSizeException{
         PrintStream output = new PrintStream("output.txt");
         printSpiral(array, output);
+        output.close();
     }
 }
