@@ -1,7 +1,7 @@
 package g144.krylova;
 
 /**
- * Class, contains method, which return result of operation with two values.
+ * Class containing method returning result of operation with two values.
  */
 public class Calculator {
     /**

@@ -4,9 +4,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-/**
- * Class is javaFX controller, which provides calculator.
- */
 public class Controller {
     @FXML
     private Spinner<Double> firstSpinner;
@@ -18,7 +15,7 @@ public class Controller {
     private ComboBox<String> actionBox;
 
     /**
-     * sets initial properties to application's elements.
+     * Method initializing elements.
      */
     @FXML
     public void initialize(){
@@ -37,8 +34,7 @@ public class Controller {
     }
 
     /**
-     * realize calculation, when one value of operands or operator changed.
-     * gets values of operands from spinners and operation from comboBox
+     * Method calculating the result of operators and operand that are getting from spinners and comboBox.
      */
     public void calculate() {
         try {
